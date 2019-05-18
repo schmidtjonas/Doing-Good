@@ -94,7 +94,7 @@ export default class ProfileScreen extends React.Component {
   renderJobPreview({ item }){
       return <JobPreview/>;
   }
-
+  
   returnKey(item){
       return item.toString();
   }
@@ -114,6 +114,7 @@ export default class ProfileScreen extends React.Component {
             <Text style={{fontSize: 14, fontWeight:'bold'}}>{ name }</Text>
             <Text>{description}</Text>
         </View>
+
         <FlatList
           data = {[1,2,3,4,5,6,7,8,9,10]}
           keyExtractor={this.returnKey}
@@ -158,7 +159,33 @@ const styles = StyleSheet.create({
   infoField : {
     padding:20,
     paddingBottom: 10,
+    paddingTop: 10,
     borderBottomColor :'grey',
     borderBottomWidth:1,
-  }
+  },
+  newRequest : {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+    borderRadius: 15,
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'grey',
+    height: 150,
+  },
+  requestLeft : {
+    justifyContent: 'center',
+    backgroundColor: "#FFFFFF",
+    flex: 1,
+
+},
+requestRight : {
+    padding: 20,
+    justifyContent: 'center',
+    backgroundColor: "#FFFFFF",
+    flex: 1,
+},
 });
