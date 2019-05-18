@@ -60,6 +60,11 @@ export default class LoginScreen extends React.Component {
                 onPress = {()=> {this.onSignUp()}}>
             </Button>
 
+            <Button 
+                gradient title='Home!'
+                onPress = {()=> {this.props.navigation.navigate('Main')}}>
+            </Button>
+
           </View>
         </View>
         );
