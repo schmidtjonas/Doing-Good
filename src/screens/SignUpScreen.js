@@ -8,26 +8,23 @@ import {
   Button,
 } from 'react-native';
 
-export default class LoginScreen extends React.Component {
+export default class SignUpScreen extends React.Component {
 
     constructor(props){
         super(props);
         this.state = ({
             email : '',
-            password : '',
-            error: '',
+            password : ''
         })
     }
 
     loginUser = (email,password) => {
-      firebase.auth().signInWithEmailAndPassword(email,password)
-      .then(() => this.props.navigation.navigate('Main'))
-      .catch((err) => this.setState({error: err}))
+        try{
+            firebase.auth().signInWithEmailAndPassword(email,password).then(() => this.props.navigation.navigate('Main'));
+        }catch(error){
+            console.log(error.toString());
+        }
         
-    }
-
-    onSignUp(){
-      this.props.navigation.push('SignUp');
     }
     
     render() {
@@ -48,18 +45,14 @@ export default class LoginScreen extends React.Component {
                 secureTextEntry={true} 
                 onChangeText= {(password)=> this.setState({password})}
             />      
-
-            <Button 
-                gradient title='Login!'
-                onPress = {()=> this.loginUser(this.state.email, this.state.password)}>
-            </Button>
+            
             <Button 
                 gradient title='Sign Up!'
-                onPress = {()=> {this.onSignUp()}}>
+                onPress = {()=> this.loginUser(this.state.email, this.state.password)}>
             </Button>
-            <Text>{this.state.error}</Text>
 
           </View>
+        </View>
         );
     }
 }
