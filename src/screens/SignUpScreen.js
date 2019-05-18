@@ -39,6 +39,7 @@ export default class SignUpScreen extends React.Component {
         email: email,
         description: '',
         karmapoints: 0,
+        distance: 30,
       })
         .then((data) => this.props.navigation.navigate('Main'))
         .catch((err) => this.setState({error: ''+err}))
