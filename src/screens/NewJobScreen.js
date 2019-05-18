@@ -38,6 +38,7 @@ export default class NewJobScreen extends React.Component {
         'date': date,
         'description': description,
       });
+      this.props.navigation.navigate('Profile');
     }
     
     render() {
