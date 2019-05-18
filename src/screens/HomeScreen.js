@@ -51,12 +51,23 @@ export default class App extends Component {
           
           {keys.map(key => {
             return <Card style={[styles.card, styles.card1]} key={key}>
-              <Text style={styles.label}>
-                Titel: {data[key]['title']}
-              </Text>
-              <Text>
-                Date: {data[key]['date']}
-              </Text>
+                    <View style={styles.topCard}>
+                    <Image 
+                        style={{width: '100%', height: 200}}
+                        source={require('../assets/logo.png')} />
+                    </View>
+                    <View style={styles.bottomCard}>
+                      <Text style={styles.label}>
+                        {data[key]['title']}
+                      </Text>
+                       
+                      <Text>
+                      {data[key]['description']}
+                      </Text>
+                      <Text>
+                        Date: {data[key]['date']}
+                      </Text>
+                    </View>
             </Card>;
           })}
           
@@ -108,6 +119,14 @@ const styles = StyleSheet.create({
     },
     shadowOpacity:0.5,
   },
+  topCard : {
+    width: '100%',
+    borderBottomWidth: 2,
+    marginBottom: 20,
+  },
+  bottomCard : {
+
+  },
   card1: {
     backgroundColor: '#FE474C',
   },
@@ -115,10 +134,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FEB12C',
   },
   label: {
-    lineHeight: 400,
-    textAlign: 'center',
-    fontSize: 55,
-    fontFamily: 'System',
+    fontSize: 20,
+    fontFamily: 'Roboto',
     color: '#ffffff',
     backgroundColor: 'transparent',
   },
