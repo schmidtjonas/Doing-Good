@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -30,28 +24,13 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    //const userid = firebase.auth().currentUser.uid;
+    const userid = firebase.auth().currentUser.uid;
     firebase.database().ref('requests').once('value')
     .then((snapshot) => {
       let data = snapshot.val();
       let keys = Object.keys(data);
-      this.setState({data: data, keys: keys, loading: false});
+      this.setState({data: data, keys: keys, loading: false, userid});
     })
-    //this.setState({userid});
-  }
-
-  renderCards(){
-    const {data, keys} = this.state;
-    console.log(keys);
-    console.log(data)
-    keys.forEach((key) => { console.log(data[key]); });
-
-    var cards = keys.map(key => {
-      return <Card style={[styles.card, styles.card1]} key={key}><Text> {''+data[key]} </Text></Card>;
-    });
-
-    return cards;
-    
   }
 
   render() {
