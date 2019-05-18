@@ -24,18 +24,39 @@ export default class App extends Component {
     this.state = ({
       userid: '',
       loading: true,
+      keys: null,
+      data: null,
     });
   }
 
-  componentDidMount() {
-      this.setState({ 
-        userid: firebase.auth().currentUser.uid,
-        loading: false,
-      })
+  componentDidMount(){
+    //const userid = firebase.auth().currentUser.uid;
+    firebase.database().ref('requests').once('value')
+    .then((snapshot) => {
+      let data = snapshot.val();
+      let keys = Object.keys(data);
+      this.setState({data: data, keys: keys, loading: false});
+    })
+    //this.setState({userid});
+  }
+
+  renderCards(){
+    const {data, keys} = this.state;
+    console.log(keys);
+    console.log(data)
+    keys.forEach((key) => { console.log(data[key]); });
+
+    var cards = keys.map(key => {
+      return <Card style={[styles.card, styles.card1]} key={key}><Text> {''+data[key]} </Text></Card>;
+    });
+
+    return cards;
+    
   }
 
   render() {
-    if(this.state.loading){
+    const {loading, data, keys} = this.state;
+    if(loading){
       return <SplashScreen/>;
     }
     return (
@@ -47,7 +68,8 @@ export default class App extends Component {
           ref={swiper => {
             this.swiper = swiper
           }}>
-
+          {this.renderCards()}
+          <Card style={[styles.card, styles.card1]}><Text style={styles.label}>Hi</Text></Card>
           <Card style={[styles.card, styles.card1]}><Text style={styles.label}>A</Text></Card>
           <Card style={[styles.card, styles.card2]}><Text style={styles.label}>B</Text></Card>
           <Card style={[styles.card, styles.card1]}><Text style={styles.label}>C</Text></Card>
