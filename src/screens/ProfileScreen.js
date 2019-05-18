@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import JobPreview from '../components/JobPreview';
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
@@ -52,7 +53,10 @@ export default class ProfileScreen extends React.Component {
               borderRadius: 5,
             }}
           >
-            <Text>Edit Profile</Text>
+            <TouchableOpacity>
+              <Text onPress={() => {this.props.navigation.navigate('Edit')}}>Edit Profile</Text>
+            </TouchableOpacity>
+            
           </View>
         </View>
         
