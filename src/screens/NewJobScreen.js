@@ -6,8 +6,9 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from 'firebase';
+import { TouchableHighlight, TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import DatePicker from 'react-native-datepicker';
 
 export default class NewJobScreen extends React.Component {
 
@@ -33,6 +34,7 @@ export default class NewJobScreen extends React.Component {
     
     render() {
         return (
+        <ScrollView>
         <View style={styles.container}>   
           <View style={styles.loginContainer} >
             <View style={styles.headerContainer}>
@@ -46,15 +48,53 @@ export default class NewJobScreen extends React.Component {
 
             <TextInput 
                 style={styles.input}
-                placeholder='Location' 
+                placeholder='Location - Streetname' 
                 onChangeText= {(location)=> this.setState({location})}
             />    
+
+            <TextInput 
+                style={styles.input}
+                placeholder='Location - City' 
+                onChangeText= {(location)=> this.setState({location})}
+            />   
+
+            <TextInput 
+                style={styles.input}
+                placeholder='Location - PostalCode' 
+                onChangeText= {(location)=> this.setState({location})}
+            />   
 
             <TextInput 
                 style={styles.inputDesc}
                 placeholder='Description' 
                 onChangeText= {(description)=> this.setState({description})}
             />   
+            <View style={{alignItems:'center'}}>
+                <DatePicker
+                    style={{width: 200}}
+                    date={this.state.date} //initial date from state
+                    mode="date" //The enum of date, datetime and time
+                    placeholder="Select Date"
+                    format="DD-MM-YYYY"
+                    minDate="19-05-2019"
+                    maxDate="01-01-2029"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    customStyles={{
+                        dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                        },
+                        dateInput: {
+                        marginLeft: 36
+                        }
+                    }}
+                    onDateChange={(date) => {this.setState({date: date})}}
+                    />
+            </View>
+           
 
             <Text>{this.state.error}</Text>
 
@@ -67,7 +107,7 @@ export default class NewJobScreen extends React.Component {
 
           </View>
         </View>
-
+        </ScrollView>
         );
     }
 }
