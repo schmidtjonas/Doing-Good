@@ -10,6 +10,7 @@ export default {
   noticeBackground: columbiaBlue,
   loginBackground: columbiaBlue,
   noticeText: mainFontColor,
+  mainBackground: columbiaBlue,
 
   sunsetOrange : '#fe5ff',
   beige: '#eef5db',
