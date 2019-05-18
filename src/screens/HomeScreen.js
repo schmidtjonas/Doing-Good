@@ -20,6 +20,7 @@ export default class App extends Component {
       loading: true,
       keys: null,
       data: null,
+      users: null,
     });
   }
 
@@ -29,12 +30,26 @@ export default class App extends Component {
     .then((snapshot) => {
       let data = snapshot.val();
       let keys = Object.keys(data);
-      this.setState({data: data, keys: keys, loading: false, userid});
+      this.setState({data: data, keys: keys});
+    })
+    firebase.database().ref('users').once('value')
+    .then((snapshot) => {
+      let users = snapshot.val();
+      this.setState({users: users, loading: false, userid});
+    })
+  }
+
+  match(key){
+    const {userid} = this.state;
+    var ref = firebase.database().ref('users').child(userid).child('matches');
+    var newMatch = ref.push();
+    newMatch.set({
+      'id': key
     })
   }
 
   render() {
-    const {loading, data, keys} = this.state;
+    const {loading, data, keys, users} = this.state;
     if(loading){
       return <SplashScreen/>;
     }
@@ -50,7 +65,9 @@ export default class App extends Component {
           }}>
           
           {keys.map(key => {
-            return <Card style={[styles.card, styles.card1]} key={key}>
+            return <Card style={[styles.card, styles.card1]} key={key} onSwipedRight={
+              () => {this.match(key)}
+            }>
               <Text style={styles.label}>
                 Titel: {data[key]['title']}
               </Text>
