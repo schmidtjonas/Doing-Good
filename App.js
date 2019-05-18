@@ -16,6 +16,7 @@ export default class App extends Component {
         messagingSenderId: "787451568515",
         appId: "1:787451568515:web:765a3a2d4773f99d"
       })
+
     }
   }
 
