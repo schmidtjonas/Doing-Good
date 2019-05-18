@@ -59,7 +59,9 @@ export default class App extends Component {
     if(loading){
       return <SplashScreen/>;
     }
+    const arr = ['A', 'B', 'C'];
     return (
+      
       <View style={{flex:1}}>
         <CardStack
           style={styles.content}
@@ -68,14 +70,11 @@ export default class App extends Component {
           ref={swiper => {
             this.swiper = swiper
           }}>
-          {this.renderCards()}
-          <Card style={[styles.card, styles.card1]}><Text style={styles.label}>Hi</Text></Card>
-          <Card style={[styles.card, styles.card1]}><Text style={styles.label}>A</Text></Card>
-          <Card style={[styles.card, styles.card2]}><Text style={styles.label}>B</Text></Card>
-          <Card style={[styles.card, styles.card1]}><Text style={styles.label}>C</Text></Card>
-          <Card style={[styles.card, styles.card2]}><Text style={styles.label}>D</Text></Card>
-          <Card style={[styles.card, styles.card1]}><Text style={styles.label}>E</Text></Card>
-
+          
+          {keys.map(item => {
+            return <Card style={[styles.card, styles.card1]}><Text style={styles.label}>{data[keys]}</Text></Card>;
+          })}
+          
         </CardStack>
         <View style={styles.footer}>
           <View style={styles.buttonContainer}>
