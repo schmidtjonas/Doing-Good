@@ -53,22 +53,20 @@ export default class LoginScreen extends React.Component {
             <Text>{this.state.error}</Text>
 
             <View style={styles.loginContainer}>
-            <TouchableOpacity style={styles.loginItem}>
-              <Text onPress={()=> this.loginUser(this.state.email, this.state.password)} 
-              style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Login! </Text>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity style={styles.loginItem}>
+                <Text onPress={()=> this.loginUser(this.state.email, this.state.password)} 
+                style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Login! </Text>
+              </TouchableOpacity>
+           </View>
+
+            <View style={styles.signUpItem}>
+              <Text style={{textAlign:'center'}}>Not registered yet? <Text onPress={()=> this.onSignUp()} style={{fontWeight:'bold'}}>Sign Up! </Text></Text>   
+            </View>
 
             <Button 
                 gradient title='Home!'
                 onPress = {()=> {this.props.navigation.navigate('Main')}}>
             </Button>
-          </View>
-
-          <View style={styles.bottomContainer}>
-            <TouchableOpacity style={styles.bottomItem}>
-              <Text onPress={()=> this.onSignUp()} style={{textAlign:'center', fontSize: 18, color:'#fff'}}>Sign Up! </Text>
-            </TouchableOpacity>
           </View>
         </View>
 
@@ -120,6 +118,11 @@ const styles = StyleSheet.create({
       backgroundColor : 'blue',
       height:50,
       justifyContent: 'center'
+    },
+    signUpItem : {
+      textAlign:'center',
+      justifyContent:'center'
+      
     }
   });
   
