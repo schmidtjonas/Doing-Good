@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button,
   Dimensions,
-  ScrollView,
   StyleSheet,
   Text, TextInput,
   View,
@@ -10,7 +9,6 @@ import {
 import Slider from '@react-native-community/slider';
 import Colors from '../assets/Colors';
 import firebase from 'firebase'
-import { ForceTouchGestureHandler } from 'react-native-gesture-handler';
 import SplashScreen from '../components/SplashScreen'
 import {TouchableOpacity} from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("window");
@@ -69,7 +67,7 @@ export default class EditProfileScreen extends React.Component {
             <Text>Name</Text>
             <TextInput
               style={styles.input}
-              color='#b8d8d8'
+              //color='#b8d8d8'
               defaultValue={'' + this.state.name}
               onChangeText= {(name)=> this.setState({name})}
             />
@@ -91,7 +89,7 @@ export default class EditProfileScreen extends React.Component {
             <Slider
               style={{height: 40}}
               minimumValue={1}
-              maximumValue={200}
+              maximumValue={100}
               value={this.state.distance}
               step={1}
               maximumTrackTintColor="#000000"
@@ -104,7 +102,7 @@ export default class EditProfileScreen extends React.Component {
             <View style={styles.loginContainer}>
               <TouchableOpacity style={styles.loginItem}>
                 <Text onPress={()=> this.saveChanges()}
-                      style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Save!</Text>
+                      style={{textAlign:'center', fontSize: 18, color: Colors.weldonBlue}}>Save!</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -114,7 +112,7 @@ export default class EditProfileScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  backgroundColor: {color: '#b8d8d8'},
+  //backgroundColor: {color: '#b8d8d8'},
   container : {
     flex: 1,
     width: '100%',
@@ -128,7 +126,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 40,
     borderWidth: 1,
-    borderColor: '#ddd'
+    borderColor: Colors.weldonBlue,
   },
 
   headerContainer : {
@@ -136,15 +134,15 @@ const styles = StyleSheet.create({
     height: 40,
     marginTop:25,
     paddingBottom: 20,
-    backgroundColor: Colors.weldonBlue,
+    //backgroundColor: Colors.weldonBlue,
   },
 
   header : {
-    fontFamily: 'Roboto',
+    //fontFamily: 'Roboto',
     fontWeight: 'bold',
     fontSize: 18,
     textAlign: 'center',
-    backgroundColor: Colors.sunsetOrange,
+    //backgroundColor: Colors.sunsetOrange,
   },
 
   profileImage: {
