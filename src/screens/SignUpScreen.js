@@ -52,7 +52,6 @@ export default class SignUpScreen extends React.Component {
             <TextInput 
                 style={styles.input}
                 placeholder='Email' 
-                defaultValue='test@gmail.com'
                 onChangeText= {(email)=> this.setState({email})}
             />
 
@@ -60,20 +59,17 @@ export default class SignUpScreen extends React.Component {
                 style={styles.input}
                 placeholder='Password' 
                 secureTextEntry={true} 
-                defaultValue='test123'
                 onChangeText= {(password)=> this.setState({password})}
             />      
             <TextInput 
                 style={styles.input}
                 placeholder='repeat Password' 
                 secureTextEntry={true} 
-                defaultValue='test123'
                 onChangeText= {(password2)=> this.setState({password2})}
             />      
             <TextInput 
               style={styles.input}
               placeholder='Name' 
-              defaultValue='Max Mustermann'
               onChangeText= {(name)=> this.setState({name})}
             />    
             
