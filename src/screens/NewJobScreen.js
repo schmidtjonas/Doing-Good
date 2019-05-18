@@ -14,20 +14,26 @@ export default class NewJobScreen extends React.Component {
 
     state = ({
         title : '',
-        location : '',
+        street : '',
+        city: '',
+        postcode: '',
         description : '',
         error: '',
         userid: firebase.auth().currentUser.uid,
+        date: '',
     });
 
     publishRequest(){
-      const {title, location, description, userid} = this.state;
+      const {title, city, street, postcode, date, description, userid} = this.state;
       var requestRef = firebase.database().ref('requests');
       var newRequest = requestRef.push();
       newRequest.set({
         'userid': userid,
         'title': title,
-        'location': location,
+        'city': city,
+        'street': street,
+        'postcode': postcode,
+        'date': date,
         'description': description,
       });
     }
@@ -49,19 +55,19 @@ export default class NewJobScreen extends React.Component {
             <TextInput 
                 style={styles.input}
                 placeholder='Location - Streetname' 
-                onChangeText= {(location)=> this.setState({location})}
+                onChangeText= {(street)=> this.setState({street})}
             />    
 
             <TextInput 
                 style={styles.input}
                 placeholder='Location - City' 
-                onChangeText= {(location)=> this.setState({location})}
+                onChangeText= {(city)=> this.setState({city})}
             />   
 
             <TextInput 
                 style={styles.input}
                 placeholder='Location - PostalCode' 
-                onChangeText= {(location)=> this.setState({location})}
+                onChangeText= {(postcode)=> this.setState({postcode})}
             />   
 
             <TextInput 
@@ -168,7 +174,7 @@ const styles = StyleSheet.create({
     },
     signUpItem : {
       textAlign:'center',
-      justifyContent:'center'
+      justifyContent:'center',
       
     }
   });

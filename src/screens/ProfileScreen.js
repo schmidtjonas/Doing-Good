@@ -31,12 +31,12 @@ export default class ProfileScreen extends React.Component {
 
   componentDidMount() {
     const {userid} = this.state;
-    firebase.database().ref('users/').once('value')
+    firebase.database().ref('users/').child(userid).once('value')
       .then((snapshot) => {
         this.setState({
-          name: snapshot.child(userid).child('name').val(),
-          karmapoints: snapshot.child(userid).child('karmapoints').val(),
-          description: snapshot.child(userid).child('description').val(),
+          name: snapshot.child('name').val(),
+          karmapoints: snapshot.child('karmapoints').val(),
+          description: snapshot.child('description').val(),
           loading: false,
       })
       });
