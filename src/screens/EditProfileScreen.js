@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -8,54 +9,91 @@ import {
 } from 'react-native';
 
 import firebase from 'firebase'
+import SplashScreen from '../components/SplashScreen'
+import {TouchableOpacity} from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
 export default class EditProfileScreen extends React.Component {
 
-    render() {
-        return (
-        <View style={styles.appContainer}>
-          <Text style={styles.header}>Personal information</Text>
-          <View
-          style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          padding: 3
-          }}
-          >
-            <View style={styles.profileImage} >
+  constructor(props){
+    super(props);
+    this.state = ({
+      userid: firebase.auth().currentUser.uid,
+      email : '',
+      name: '',
+      password : '',
+      error: '',
+      loading: true
+    })
+  }
 
+  componentDidMount() {
+    const {userid} = this.state;
+    firebase.database().ref('users/').child(userid).once('value')
+      .then((snapshot) => {
+        this.setState({
+          name: snapshot.child('name').val(),
+          email: snapshot.child('email').val(),
+          description: snapshot.child('description').val(),
+          loading: false,
+        })
+      });
+  }
+
+  render() {
+      if (this.state.loading) {
+        return <SplashScreen/>;
+      }
+      return (
+        <View style={styles.container}>
+          <View style={styles.loginContainer} >
+            <View style={styles.headerContainer}>
+              <Text style={styles.header}>Personal information</Text>
             </View>
-
             <TextInput
               style={styles.input}
-              placeholder='this.state.name'
+              defaultValue={'' + this.state.name}
               onChangeText= {(name)=> this.setState({name})}
             />
 
             <TextInput
               style={styles.input}
-              placeholder='this.state.email'
+              defaultValue={'' + this.state.email}
               onChangeText= {(email)=> this.setState({email})}
             />
+            <Text>{this.state.error}</Text>
 
+            <View style={styles.loginContainer}>
+              <TouchableOpacity style={styles.loginItem}>
+                <Text onPress={()=> this.loginUser(this.state.email, this.state.password)}
+                      style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Login! </Text>
+              </TouchableOpacity>
+            </View>
 
-
-
+            <Button
+              gradient title='Home!'
+              onPress = {()=> {
+                firebase.auth().signInWithEmailAndPassword('test@test.de','123456');
+                this.props.navigation.navigate('Main');
+              }}>
+            </Button>
           </View>
         </View>
-        );
+      );
     }
 }
 
 const styles = StyleSheet.create({
-  appContainer : {
+
+  container: {
     flex: 1,
     width: '100%',
     backgroundColor: '#fff',
     height:'100%'
+  },
+  loginContainer : {
+    margin: 30,
   },
 
   headerContainer : {
@@ -88,9 +126,10 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
 
-  container: {
-    flex: 1,
+  entryTitle : {
+    color: '#000',
+    fontSize: 18,
+    textAlign: 'left',
   },
-
   
 });
