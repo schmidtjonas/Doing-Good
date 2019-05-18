@@ -9,15 +9,9 @@ import React from 'react';
 
 export default class SplashScreen extends React.Component {
     render() {
-      const textStyles = {
-        color: 'white',
-        fontSize: 40,
-        fontWeight: 'bold'
-      };
-  
       return (
         <View >
-          <Text style={textStyles}>
+          <Text>
             Splash Screen
           </Text>
         </View>
