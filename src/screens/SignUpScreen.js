@@ -14,17 +14,17 @@ export default class SignUpScreen extends React.Component {
         super(props);
         this.state = ({
             email : '',
-            password : ''
+            password : '',
+            error: '',
         })
     }
 
-    loginUser = (email,password) => {
-        try{
-            firebase.auth().signInWithEmailAndPassword(email,password).then(() => this.props.navigation.navigate('Main'));
-        }catch(error){
-            console.log(error.toString());
-        }
-        
+    signUpUser = (email,password) => {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => { this.props.navigation.navigate('Main')})
+      .catch((err) => {
+          this.setState({ error: 'Authentication failed.\n'+err });        
+      });
     }
     
     render() {
@@ -48,8 +48,10 @@ export default class SignUpScreen extends React.Component {
             
             <Button 
                 gradient title='Sign Up!'
-                onPress = {()=> this.loginUser(this.state.email, this.state.password)}>
+                onPress = {()=> this.signUpUser(this.state.email, this.state.password)}>
             </Button>
+
+            <Text>{this.state.error}</Text>
 
           </View>
         </View>

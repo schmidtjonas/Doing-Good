@@ -22,7 +22,7 @@ export default class LoginScreen extends React.Component {
     loginUser = (email,password) => {
       firebase.auth().signInWithEmailAndPassword(email,password)
       .then(() => this.props.navigation.navigate('Main'))
-      .catch((err) => this.setState({error: err}))
+      .catch((err) => this.setState({error: 'Login failed:\n' + err})) // err ist scheinbar kein String und kann alleine nicht dargestellt werden
         
     }
 
@@ -60,6 +60,8 @@ export default class LoginScreen extends React.Component {
             <Text>{this.state.error}</Text>
 
           </View>
+        </View>
+
         );
     }
 }
