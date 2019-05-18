@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -33,22 +34,22 @@ export default class EditProfileScreen extends React.Component {
             <View style={styles.profileImage} >
 
             </View>
-
+            <Text>Name</Text>
             <TextInput
               style={styles.input}
               color='#b8d8d8'
               placeholder='this.state.name'
               onChangeText= {(name)=> this.setState({name})}
             />
-
+            <Text>Email</Text>
             <TextInput
               style={styles.input}
-              placeholder='this.state.email'
+              defaultValue={'' + this.state.email}
               onChangeText= {(email)=> this.setState({email})}
             />
           </View>
         </View>
-        );
+      );
     }
 }
 
@@ -59,10 +60,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height:'100%'
   },
+  loginContainer : {
+    margin: 10,
+  },
+
+  loginItem : {
+    padding: 20,
+    borderRadius: 40,
+    borderWidth: 1,
+    borderColor: '#ddd'
+  },
 
   headerContainer : {
     width: 100 + "%",
-    height: 120,
+    height: 40,
     marginTop:25,
     paddingBottom: 20,
     backgroundColor: Colors.weldonBlue,
@@ -93,9 +104,10 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
 
-  container: {
-    flex: 1,
+  entryTitle : {
+    color: '#000',
+    fontSize: 18,
+    textAlign: 'left',
   },
-
   
 });

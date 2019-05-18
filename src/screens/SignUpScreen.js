@@ -35,14 +35,14 @@ export default class SignUpScreen extends React.Component {
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((res) => { 
         firebase.database().ref('users/' + res.user.uid).set({
-          name: this.state.name,
-          email: email,
-          description: '',
-          karmapoints: 0,
-        })
+        name: this.state.name,
+        email: email,
+        description: '',
+        karmapoints: 0,
+      })
         .then((data) => this.props.navigation.navigate('Main'))
         .catch((err) => this.setState({error: ''+err}))
-      })
+    })
       .catch((err) => this.setState({ error: ''+err }));
     }
     
