@@ -16,12 +16,22 @@ export default class SignUpScreen extends React.Component {
         this.state = ({
             email : '',
             password : '',
+            password2 : '',
             error: '',
             name: '',
         })
     }
 
-    signUpUser = (email,password) => {
+    signUpUser() {
+      const {email, password, password2, name} = this.state;
+      if (password !== password2){
+        this.setState({error: 'Error: passwords dont match.'});
+        return
+      }
+      if (name.length == 0){
+        this.setState({error: 'Error: please enter a name.'});
+        return 
+      }
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((res) => { 
         firebase.database().ref('users/' + res.user.uid).set({
@@ -29,7 +39,7 @@ export default class SignUpScreen extends React.Component {
           email: email});
         this.props.navigation.navigate('Main')})
       .catch((err) => {
-          this.setState({ error: 'Authentication failed.\n'+err });        
+          this.setState({ error: ''+err });        
       });
     }
     
@@ -42,6 +52,7 @@ export default class SignUpScreen extends React.Component {
             <TextInput 
                 style={styles.input}
                 placeholder='Email' 
+                defaultValue='test@gmail.com'
                 onChangeText= {(email)=> this.setState({email})}
             />
 
@@ -49,17 +60,26 @@ export default class SignUpScreen extends React.Component {
                 style={styles.input}
                 placeholder='Password' 
                 secureTextEntry={true} 
+                defaultValue='test123'
                 onChangeText= {(password)=> this.setState({password})}
+            />      
+            <TextInput 
+                style={styles.input}
+                placeholder='repeat Password' 
+                secureTextEntry={true} 
+                defaultValue='test123'
+                onChangeText= {(password2)=> this.setState({password2})}
             />      
             <TextInput 
               style={styles.input}
               placeholder='Name' 
+              defaultValue='Max Mustermann'
               onChangeText= {(name)=> this.setState({name})}
             />    
             
             <View style={styles.loginContainer}>
               <TouchableOpacity style={styles.loginItem}>
-                <Text onPress={()=> this.loginUser(this.state.email, this.state.password)} 
+                <Text onPress={()=> this.signUpUser(this.state.email, this.state.password)} 
                 style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Sign Up now! </Text>
               </TouchableOpacity>
            </View>
