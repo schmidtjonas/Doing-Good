@@ -65,7 +65,10 @@ export default class LoginScreen extends React.Component {
 
             <Button 
                 gradient title='Home!'
-                onPress = {()=> {this.props.navigation.navigate('Main')}}>
+                onPress = {()=> {
+                  firebase.auth().signInWithEmailAndPassword('test@test.de','123456');
+                  this.props.navigation.navigate('Main');
+                }}>
             </Button>
           </View>
         </View>
