@@ -65,18 +65,8 @@ export default class App extends Component {
           }}>
           
           {keys.map(key => {
-<<<<<<< HEAD
-            return <Card style={[styles.card, styles.card1]} key={key} onSwipedRight={
-              () => {this.match(key)}
-            }>
-              <Text style={styles.label}>
-                Titel: {data[key]['title']}
-              </Text>
-              <Text>
-                Date: {data[key]['date']}
-              </Text>
-=======
-            return <Card style={[styles.card, styles.card1]} key={key}>
+
+            return <Card style={[styles.card, styles.card1]} key={key} onSwipedRight={() => {this.match(key)}}>
                     <View style={styles.topCard}>
                     <Image 
                         style={{width: '100%', height: 200}}
@@ -93,8 +83,10 @@ export default class App extends Component {
                       <Text>
                         Date: {data[key]['date']}
                       </Text>
+                      <Text>
+                        Name vom anderen Dude: {users[data[key]['userid']]['name']}
+                      </Text>
                     </View>
->>>>>>> f4db375b71fecb20359172d611fef129e78f1eab
             </Card>;
           })}
           
