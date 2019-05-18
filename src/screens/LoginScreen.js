@@ -59,6 +59,11 @@ export default class LoginScreen extends React.Component {
             </Button>
             <Text>{this.state.error}</Text>
 
+            <Button 
+                gradient title='Home!'
+                onPress = {()=> {this.props.navigation.navigate('Main')}}>
+            </Button>
+
           </View>
         </View>
 
