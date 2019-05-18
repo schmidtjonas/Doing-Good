@@ -40,7 +40,7 @@ export default class LoginScreen extends React.Component {
         <View style={styles.container}> 
           <Text style={styles.text}>Image</Text>
             <Image
-              style={sytles.strech}
+              style={styles.strech}
               source={{uri: 'https://www.mediaonmars.com.au/wp-content/uploads/2010/06/people_doing_good_things-310x310.png'}}
               /> 
           <View style={styles.loginContainer} >
