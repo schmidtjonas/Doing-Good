@@ -50,6 +50,7 @@ export default class LoginScreen extends React.Component {
                 secureTextEntry={true} 
                 onChangeText= {(password)=> this.setState({password})}
             />      
+            <Text>{this.state.error}</Text>
 
             <View style={styles.loginContainer}>
             <TouchableOpacity style={styles.loginItem}>
