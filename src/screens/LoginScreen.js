@@ -6,8 +6,12 @@ import {
   View,
   TextInput,
   Button,
+  Image,
+  Component
 } from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import { isCompletionStatement } from '@babel/types';
+import Colors from '../assets/Colors';
 
 export default class LoginScreen extends React.Component {
 
@@ -33,10 +37,17 @@ export default class LoginScreen extends React.Component {
     
     render() {
         return (
-        <View style={styles.container}>   
+        <View style={styles.container}> 
+          <Text style={styles.text}>Image</Text>
+            <Image
+              style={sytles.strech}
+              source={{uri: 'https://www.mediaonmars.com.au/wp-content/uploads/2010/06/people_doing_good_things-310x310.png'}}
+              /> 
           <View style={styles.loginContainer} >
             <View style={styles.headerContainer}>
-              <Text style={styles.header}>DOING GOOD</Text>
+              
+              <Text style={styles.header}>TEST</Text>
+                
             </View>
             <TextInput 
                 style={styles.input}
@@ -55,12 +66,12 @@ export default class LoginScreen extends React.Component {
             <View style={styles.loginContainer}>
               <TouchableOpacity style={styles.loginItem}>
                 <Text onPress={()=> this.loginUser(this.state.email, this.state.password)} 
-                style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Login! </Text>
+                style={{textAlign:'center', fontSize: 18, color:Colors.weldonBlue}}>Login! </Text>
               </TouchableOpacity>
            </View>
 
             <View style={styles.signUpItem}>
-              <Text style={{textAlign:'center'}}>Not registered yet? <Text onPress={()=> this.onSignUp()} style={{fontWeight:'bold'}}>Sign Up! </Text></Text>   
+              <Text style={{textAlign:'center'} }>Not registered yet? <Text onPress={()=> this.onSignUp()} style={{fontWeight:'bold'}}>Sign Up! </Text></Text>   
             </View>
 
             <Button 
@@ -72,7 +83,7 @@ export default class LoginScreen extends React.Component {
             </Button>
           </View>
         </View>
-
+        
         );
     }
 }
@@ -96,6 +107,9 @@ const styles = StyleSheet.create({
     headerContainer : {
       marginTop: 30,
       marginBottom: 50,
+    },
+    text:{
+      fontSize:20,
     },
     header : {
       fontWeight: 'bold',
@@ -126,6 +140,10 @@ const styles = StyleSheet.create({
       textAlign:'center',
       justifyContent:'center'
       
+    },
+    strech :{
+      width: 64,
+      height: 64,
     }
   });
   
