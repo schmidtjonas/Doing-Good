@@ -1,12 +1,13 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import NewJobScreen from '../screens/NewJobScreen';
+import Colors from '../assets/Colors';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -42,4 +43,5 @@ export default createBottomTabNavigator({
   Home: HomeStack,
   NewJob: NewJobStack,
   Profile: ProfileStack,
+  
 });
