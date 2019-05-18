@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import NewJobScreen from '../screens/NewJobScreen';
+import MatchesScreen from '../screens/MatchesScreen';
 import Colors from '../assets/Colors';
 
 const HomeStack = createStackNavigator({
@@ -37,11 +38,19 @@ const NewJobStack = createStackNavigator({
   },
 });
 
-
+const MatchesStack = createStackNavigator({
+  Matches: {
+      screen : MatchesScreen,
+      navigationOptions: {
+        header: null,
+    },
+  },
+});
 
 export default createBottomTabNavigator({
   Home: HomeStack,
-  NewJob: NewJobStack,
+  Matches: MatchesStack,
+  AddJob: NewJobStack,
   Profile: ProfileStack,
   
 });
