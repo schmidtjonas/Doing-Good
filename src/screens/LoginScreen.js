@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
 } from 'react-native';
+import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class LoginScreen extends React.Component {
 
@@ -26,7 +27,7 @@ export default class LoginScreen extends React.Component {
         
     }
 
-    onSignUp(){
+    onSignUp = () => {
       this.props.navigation.push('SignUp');
     }
     
@@ -34,8 +35,9 @@ export default class LoginScreen extends React.Component {
         return (
         <View style={styles.container}>   
           <View style={styles.loginContainer} >
-            <View style={styles.headerContainer}></View>
-              <Text>DOING GOOD</Text>
+            <View style={styles.headerContainer}>
+              <Text style={styles.header}>DOING GOOD</Text>
+            </View>
             <TextInput 
                 style={styles.input}
                 placeholder='Email' 
@@ -49,21 +51,22 @@ export default class LoginScreen extends React.Component {
                 onChangeText= {(password)=> this.setState({password})}
             />      
 
-            <Button 
-                gradient title='Login!'
-                onPress = {()=> this.loginUser(this.state.email, this.state.password)}>
-            </Button>
-            <Button 
-                gradient title='Sign Up!'
-                onPress = {()=> {this.onSignUp()}}>
-            </Button>
-            <Text>{this.state.error}</Text>
+            <View style={styles.loginContainer}>
+            <TouchableOpacity style={styles.loginItem}>
+              <Text onPress={()=> this.loginUser(this.state.email, this.state.password)} style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Login! </Text>
+            </TouchableOpacity>
+          </View>
 
             <Button 
                 gradient title='Home!'
                 onPress = {()=> {this.props.navigation.navigate('Main')}}>
             </Button>
+          </View>
 
+          <View style={styles.bottomContainer}>
+            <TouchableOpacity style={styles.bottomItem}>
+              <Text onPress={()=> this.onSignUp()} style={{textAlign:'center', fontSize: 18, color:'#fff'}}>Sign Up! </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -81,6 +84,21 @@ const styles = StyleSheet.create({
     loginContainer : {
       margin: 30,
     },
+    loginItem : {
+      padding: 20,
+      borderRadius: 40,
+      borderWidth: 1,
+      borderColor: '#ddd'
+    },
+    headerContainer : {
+      marginTop: 30,
+      marginBottom: 50,
+    },
+    header : {
+      fontWeight: 'bold',
+      fontSize: 18,
+      textAlign: 'center', 
+    },
     input: {
       backgroundColor: '#fff',
       borderRadius: 0,
@@ -88,6 +106,18 @@ const styles = StyleSheet.create({
       borderBottomColor: '#ddd',
       borderBottomWidth: StyleSheet.hairlineWidth,
       marginBottom: 20
+    },
+    bottomContainer : {
+      width: '100%',
+      position: 'absolute',
+      bottom:0,
+      
+    },
+    bottomItem : {
+      width: '100%',
+      backgroundColor : 'blue',
+      height:50,
+      justifyContent: 'center'
     }
   });
   
