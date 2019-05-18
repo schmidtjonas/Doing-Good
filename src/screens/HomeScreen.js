@@ -12,13 +12,18 @@ class HomeScreen extends React.Component {
 
     state = { currentUser: null }
 
+    constructor(props){
+        super(props);
+    }
+
+
     componentDidMount() {
         const { currentUser } = firebase.auth()
         this.setState({ currentUser })
     }
 
     render() {  
-        state = { currentUser: null }
+        const { currentUser } = this.state;
         return (
         <View style={styles.appContainer}>
             <Text>Hello</Text>

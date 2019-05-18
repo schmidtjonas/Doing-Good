@@ -36,7 +36,10 @@ export default class SignUpScreen extends React.Component {
       .then((res) => { 
         firebase.database().ref('users/' + res.user.uid).set({
           name: this.state.name,
-          email: email})
+          email: email,
+          description: '',
+          karmapoints: 0,
+        })
         .then((data) => this.props.navigation.navigate('Main'))
         .catch((err) => this.setState({error: ''+err}))
       })
@@ -51,25 +54,25 @@ export default class SignUpScreen extends React.Component {
               <Text>DOING GOOD</Text>
             <TextInput 
                 style={styles.input}
-                placeholder='Email' 
+                placeholder='Email'
                 onChangeText= {(email)=> this.setState({email})}
             />
 
             <TextInput 
                 style={styles.input}
                 placeholder='Password' 
-                secureTextEntry={true} 
+                secureTextEntry={true}
                 onChangeText= {(password)=> this.setState({password})}
             />      
             <TextInput 
                 style={styles.input}
                 placeholder='repeat Password' 
-                secureTextEntry={true} 
+                secureTextEntry={true}
                 onChangeText= {(password2)=> this.setState({password2})}
             />      
-            <TextInput 
+            <TextInput
               style={styles.input}
-              placeholder='Name' 
+              placeholder='Name'
               onChangeText= {(name)=> this.setState({name})}
             />    
             
