@@ -13,35 +13,48 @@ import {
   Image,
 } from 'react-native';
 
+import firebase from 'firebase';
+import SplashScreen from '../components/SplashScreen';
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 
 
-export default class App extends Component<{}> {
+export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = ({
+      userid: '',
+      loading: true,
+    });
+  }
+
+  componentDidMount() {
+      this.setState({ 
+        userid: firebase.auth().currentUser.uid,
+        loading: false,
+      })
+  }
+
   render() {
+    if(this.state.loading){
+      return <SplashScreen/>;
+    }
     return (
       <View style={{flex:1}}>
-
-
         <CardStack
           style={styles.content}
 
           renderNoMoreCards={() => <Text style={{fontWeight:'700', fontSize:18, color:'gray'}}>No more cards :(</Text>}
           ref={swiper => {
             this.swiper = swiper
-          }}
+          }}>
 
-          onSwiped={() => console.log('onSwiped')}
-          onSwipedLeft={() => console.log('onSwipedLeft')}
-        >
           <Card style={[styles.card, styles.card1]}><Text style={styles.label}>A</Text></Card>
-          <Card style={[styles.card, styles.card2]} onSwipedLeft={() => alert('onSwipedLeft')}><Text style={styles.label}>B</Text></Card>
+          <Card style={[styles.card, styles.card2]}><Text style={styles.label}>B</Text></Card>
           <Card style={[styles.card, styles.card1]}><Text style={styles.label}>C</Text></Card>
           <Card style={[styles.card, styles.card2]}><Text style={styles.label}>D</Text></Card>
           <Card style={[styles.card, styles.card1]}><Text style={styles.label}>E</Text></Card>
 
         </CardStack>
-
-
         <View style={styles.footer}>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={[styles.button,styles.red]} onPress={()=>{
@@ -60,7 +73,6 @@ export default class App extends Component<{}> {
               <Image source={require('../assets/green.png')} resizeMode={'contain'} style={{ height: 62, width: 62 }} />
             </TouchableOpacity>
           </View>
-
         </View>
       </View>
     );
