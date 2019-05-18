@@ -21,7 +21,7 @@ export default class ProfileScreen extends React.Component {
     const imageUrl = 'https://www.welt.de/img/vermischtes/mobile166641813/3792501637-ci102l-w1024/CRESTED-BLACK-MACAQUE.jpg';
     return (
     <View style={styles.headerWrapper}>
-      <View style={{ marginTop: 10, paddingBottom: 20, paddinTop: 20, flexDirection: "row" }}>
+      <View style={{ marginTop: 10, paddinTop: 20, flexDirection: "row" }}>
         <View style={styles.profileImage} >
             
         </View>
@@ -57,10 +57,7 @@ export default class ProfileScreen extends React.Component {
         </View>
         
       </View>
-        <View style={styles.infoField}>
-            <Text style={{fontSize: 14, fontWeight:'bold'}}>Hier der Username</Text>
-            <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet </Text>
-        </View>
+        
     </View>  
     );
   };
@@ -79,6 +76,10 @@ export default class ProfileScreen extends React.Component {
       <View style={styles.container}>
         {this.renderHeader()}
         <ScrollView style={styles.listContainer}>
+        <View style={styles.infoField}>
+            <Text style={{fontSize: 14, fontWeight:'bold'}}>Hier der Username</Text>
+            <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet </Text>
+        </View>
         <FlatList
           data = {[1,2,3,4,5,6,7,8,9,10]}
           keyExtractor={this.returnKey}
@@ -116,10 +117,14 @@ const styles = StyleSheet.create({
       paddingLeft: 20,
       paddingRight: 20,
       paddingBottom: 10,
-      borderBottomColor : 'grey',
-      borderBottomWidth: 1,
   },
   listContainer : {
     flex: 1,
+  },
+  infoField : {
+    padding:20,
+    paddingBottom: 10,
+    borderBottomColor :'grey',
+    borderBottomWidth:1,
   }
 });
