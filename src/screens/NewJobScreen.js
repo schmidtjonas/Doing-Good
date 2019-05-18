@@ -12,17 +12,19 @@ import DatePicker from 'react-native-datepicker';
 
 export default class NewJobScreen extends React.Component {
 
-    state = ({
-        title : '',
-        street : '',
-        city: '',
-        postcode: '',
-        description : '',
-        error: '',
-        userid: firebase.auth().currentUser.uid,
-        date: '',
+  constructor(props){
+    super(props);
+    this.state = ({
+      title : '',
+      street : '',
+      city: '',
+      postcode: '',
+      description : '',
+      error: '',
+      userid: firebase.auth().currentUser.uid,
+      date: '',
     });
-
+  }
     publishRequest(){
       const {title, city, street, postcode, date, description, userid} = this.state;
       var requestRef = firebase.database().ref('requests');

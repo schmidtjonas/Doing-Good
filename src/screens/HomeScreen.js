@@ -6,23 +6,29 @@ import {
   View,
 } from 'react-native';
 
-import firebase from 'firebase'
+import firebase from 'firebase';
+import SplashScreen from '../components/SplashScreen';
 
 class HomeScreen extends React.Component {
 
-    state = { currentUser: null }
-
     constructor(props){
-        super(props);
+      super(props);
+      this.state = ({
+        userid: '',
+        loading: true,
+      });
     }
 
-
     componentDidMount() {
-        const { currentUser } = firebase.auth()
-        this.setState({ currentUser })
+        this.setState({ 
+          userid: firebase.auth().currentUser.uid 
+        })
     }
 
     render() {  
+      if(this.state.loading){
+        return <SplashScreen/>;
+      }
         const { currentUser } = this.state;
         return (
         <View style={styles.appContainer}>
