@@ -36,7 +36,10 @@ export default class SignUpScreen extends React.Component {
       .then((res) => { 
         firebase.database().ref('users/' + res.user.uid).set({
           name: this.state.name,
-          email: email})
+          email: email,
+          description: '',
+          karmapoints: 0,
+        })
         .then((data) => this.props.navigation.navigate('Main'))
         .catch((err) => this.setState({error: ''+err}))
       })

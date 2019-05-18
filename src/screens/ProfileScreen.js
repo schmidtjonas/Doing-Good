@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 import JobPreview from '../components/JobPreview';
+import SplashScreen from '../components/SplashScreen';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
@@ -20,24 +21,29 @@ export default class ProfileScreen extends React.Component {
   constructor(props){
     super(props);
     this.state = ({
-      user: firebase.auth().currentUser,
+      userid: firebase.auth().currentUser.uid,
       name: '',
+      karmapoints: 0,
+      description: '',
+      loading: true,
     })
   }
 
-
   componentDidMount() {
-    console.log(this.state.user);
+    const {userid} = this.state;
     firebase.database().ref('users/').once('value')
       .then((snapshot) => {
         this.setState({
-          name: snapshot.val().name,
-        })
+          name: snapshot.child(userid).child('name').val(),
+          karmapoints: snapshot.child(userid).child('karmapoints').val(),
+          description: snapshot.child(userid).child('description').val(),
+          loading: false,
+      })
       });
   }
 
   renderHeader = () => {
-    const { user } = this.state;
+    const { karmapoints } = this.state;
     const imageUrl = 'https://www.welt.de/img/vermischtes/mobile166641813/3792501637-ci102l-w1024/CRESTED-BLACK-MACAQUE.jpg';
     return (
     <View style={styles.headerWrapper}>
@@ -56,7 +62,7 @@ export default class ProfileScreen extends React.Component {
         >
           <View style={{ flexDirection: "row", flex: 1 }}>
             <View style={{ flex: 2, alignItems: "center" }}>
-              <Text>390</Text>
+              <Text>{karmapoints}</Text>
               <Text>Karmapoints</Text>
             </View>
             <View style={{ flex: 1, alignItems: "center" }}>
@@ -88,21 +94,27 @@ export default class ProfileScreen extends React.Component {
   renderJobPreview({ item }){
       return <JobPreview/>;
   }
-
+  
   returnKey(item){
       return item.toString();
   }
 
   render() {
+    if(this.state.loading){
+      return <SplashScreen/>;
+    }
+
     //if abfrage ob eigene anfragen ansonsten keine akriven anzeigen
+    const { name, description } = this.state;
     return (
       <View style={styles.container}>
         {this.renderHeader()}
         <ScrollView style={styles.listContainer}>
         <View style={styles.infoField}>
-            <Text style={{fontSize: 14, fontWeight:'bold'}}>Hier der Username</Text>
-            <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet </Text>
+            <Text style={{fontSize: 14, fontWeight:'bold'}}>{ name }</Text>
+            <Text>{description}</Text>
         </View>
+
         <FlatList
           data = {[1,2,3,4,5,6,7,8,9,10]}
           keyExtractor={this.returnKey}
@@ -147,7 +159,33 @@ const styles = StyleSheet.create({
   infoField : {
     padding:20,
     paddingBottom: 10,
+    paddingTop: 10,
     borderBottomColor :'grey',
     borderBottomWidth:1,
-  }
+  },
+  newRequest : {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+    borderRadius: 15,
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'grey',
+    height: 150,
+  },
+  requestLeft : {
+    justifyContent: 'center',
+    backgroundColor: "#FFFFFF",
+    flex: 1,
+
+},
+requestRight : {
+    padding: 20,
+    justifyContent: 'center',
+    backgroundColor: "#FFFFFF",
+    flex: 1,
+},
 });

@@ -22,7 +22,7 @@ export default class EditProfileScreen extends React.Component {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          padding: 5
+          padding: 3
           }}
           >
             <View style={styles.profileImage} >
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderBottomColor: '#ddd',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    marginBottom: 20
+    marginBottom: 10
   },
 
   container: {

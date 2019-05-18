@@ -1,5 +1,5 @@
-const mainFontColor = stormcloud,
-const lightFontColor = beige,
+const mainFontColor = stormcloud;
+const lightFontColor = beige;
 
 export default {
   mainFontColor,

@@ -5,6 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import NewJobScreen from '../screens/NewJobScreen';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -28,9 +29,16 @@ const ProfileStack = createStackNavigator({
   }
 });
 
+const NewJobStack = createStackNavigator({
+  Create: {
+      screen : NewJobScreen,
+  },
+});
+
 
 
 export default createBottomTabNavigator({
   Home: HomeStack,
+  NewJob: NewJobStack,
   Profile: ProfileStack,
 });
