@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import * as firebase from 'firebase';
+import AppNavigator from './src/navigation/AppNavigator';
 
 export default class App extends Component {
 
@@ -27,8 +28,8 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Doing Good!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text>Hello</Text>
+        <AppNavigator/>
       </View>
     );
   }
