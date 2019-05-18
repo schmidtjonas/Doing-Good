@@ -6,9 +6,14 @@ import HomeScreen from '../screens/HomeScreen';
 
 const HomeStack = createStackNavigator({
   Home: {
-    screen : HomeScreen,
+      screen : HomeScreen,
+      navigationOptions: {
+        header: null,
+    },
   },
 });
+
+
 
 
 export default createBottomTabNavigator({
