@@ -10,17 +10,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import * as firebase from 'firebase';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBM_uen5b9n1ho0YwKILCTHORJHXeScVQA",
-  authDomain: "doinggood.firebaseapp.com",
-  databaseURL: "https://doinggood.firebaseio.com",
-  projectId: "doinggood",
-  storageBucket: "doinggood.appspot.com",
-  messagingSenderId: "787451568515",
-  appId: "1:787451568515:web:765a3a2d4773f99d"
-};
-firebase.initializeApp(firebaseConfig);
-
 export default class App extends Component {
 
   componentWillMount(){
@@ -38,8 +27,8 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get starlksjdfted, edit App.js</Text>
+        <Text style={styles.welcome}>Welcome to Doing Good!</Text>
+        <Text style={styles.instructions}>To get started, edit App.js</Text>
       </View>
     );
   }
