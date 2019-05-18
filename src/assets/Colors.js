@@ -1,18 +1,12 @@
-const mainFontColor = stormcloud;
-const lightFontColor = beige;
+const mainFontColor = '#4f6367';
+const lightFontColor = '#eef5db';
 
 export default {
   mainFontColor,
   lightFontColor,
-  tabIconSelected: weldonBlueClicked,
-  buttonColor: weldonBlue,
-  tabBar: weldonBlue,
-  noticeBackground: columbiaBlue,
-  loginBackground: columbiaBlue,
-  noticeText: mainFontColor,
-  mainBackground: columbiaBlue,
+  
 
-  sunsetOrange : '#fe5ff',
+  sunsetOrange : '#fe5f55',
   beige: '#eef5db',
   stormcloud: '#4f6367',
   weldonBlue: '#7a9e9f',

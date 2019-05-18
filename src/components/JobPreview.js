@@ -6,12 +6,14 @@ import {
     Image,
     TouchableOpacity
 } from "react-native";
+import Colors from "../assets/Colors";
 
 export default class JobPreview extends React.Component {
 
     state = {
         id : 0,
         title: "Test",
+        fontFamily: "Roboto",
         location: "Stahnsdorferstraße 144B",
         distance: 0,
     }
@@ -49,31 +51,35 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
         overflow: 'hidden',
+        
     },
     productLeft : {
         justifyContent: 'center',
         //alignItems: 'center',
-        backgroundColor: "#FFFFFF",
+        backgroundColor: Colors.beige,
         flex: 1,
 
     },
     productRight : {
         padding: 20,
         justifyContent: 'center',
-        backgroundColor: "#FFFFFF",
+        backgroundColor: Colors.beige,
         flex: 1,
     },
     productTitle : {
-        color: '#000',
+        color: Colors.stormcloud,
+        fontFamily: 'Roboto',
         fontSize: 18,
     },
     productAdress : {
-        color: 'grey',
+        color: Colors.stormcloud,
+        fontFamily: 'Roboto',
         fontSize: 14,
 
     },
     productPrice : {
-        color: 'grey',
+        color: Colors.stormcloud,
+        fontFamily: 'Roboto',
         fontSize: 14,
     },
 });

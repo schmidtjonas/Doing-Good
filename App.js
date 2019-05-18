@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import * as firebase from 'firebase';
 import AppNavigator from './src/navigation/AppNavigator';
+import Colors from './src/assets/Colors';
 
 export default class App extends Component {
 
