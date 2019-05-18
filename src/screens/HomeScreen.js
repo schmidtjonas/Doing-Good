@@ -42,10 +42,13 @@ export default class App extends Component {
   match(key){
     const {userid} = this.state;
     var ref = firebase.database().ref('users').child(userid).child('matches');
-    var newMatch = ref.push();
-    newMatch.set({
-      'id': key
-    })
+    ref.child(key).set(1);
+  }
+
+  decline(key){
+    const {userid} = this.state;
+    var ref = firebase.database().ref('users').child(userid).child('matches');
+    ref.child(key).set(0);
   }
 
   render() {
@@ -66,7 +69,9 @@ export default class App extends Component {
           
           {keys.map(key => {
 
-            return <Card style={[styles.card, styles.card1]} key={key} onSwipedRight={() => {this.match(key)}}>
+            return <Card style={[styles.card, styles.card1]} key={key} 
+                         onSwipedRight={() => {this.match(key)}}
+                         onSwipedLeft={() => {this.decline(key)}}>
                     <View style={styles.topCard}>
                     <Image 
                         style={{width: '100%', height: 200}}
