@@ -22,7 +22,6 @@ class HomeScreen extends React.Component {
         return (
         <View style={styles.appContainer}>
             <Text>Hello</Text>
-
         </View>
         );
     }
