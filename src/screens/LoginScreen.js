@@ -14,16 +14,15 @@ export default class LoginScreen extends React.Component {
         super(props);
         this.state = ({
             email : '',
-            password : ''
+            password : '',
+            error: '',
         })
     }
 
     loginUser = (email,password) => {
-        try{
-            firebase.auth().signInWithEmailAndPassword(email,password).then(() => this.props.navigation.navigate('Main'));
-        }catch(error){
-            console.log(error.toString());
-        }
+      firebase.auth().signInWithEmailAndPassword(email,password)
+      .then(() => this.props.navigation.navigate('Main'))
+      .catch((err) => this.setState({error: err}))
         
     }
     
@@ -47,6 +46,8 @@ export default class LoginScreen extends React.Component {
                 gradient title='Login!'
                 onPress = {()=> this.loginUser(this.state.email, this.state.password)}>
             </Button>
+
+            <Text>{this.state.error}</Text>
 
         </View>
         );
