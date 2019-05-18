@@ -20,8 +20,19 @@ export default class ProfileScreen extends React.Component {
     super(props);
     this.state = ({
       user: firebase.auth().currentUser,
+      name: '',
     })
 }
+
+  componentDidMount() {
+    console.log(this.state.user);
+    firebase.database().ref('users/').once('value')
+      .then((snapshot) => {
+        this.setState({
+          name: snapshot.val().name,
+        })
+      });
+  }
 
   renderHeader = () => {
     const { user } = this.state;
