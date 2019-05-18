@@ -1,5 +1,4 @@
 import React from 'react';
-import firebase from 'firebase'
 import {
   StyleSheet,
   Text,
@@ -8,6 +7,7 @@ import {
   Button,
 } from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import firebase from 'firebase';
 
 export default class NewJobScreen extends React.Component {
 
@@ -16,7 +16,20 @@ export default class NewJobScreen extends React.Component {
         location : '',
         description : '',
         error: '',
+        userid: firebase.auth().currentUser.uid,
     });
+
+    publishRequest(){
+      const {title, location, description, userid} = this.state;
+      var requestRef = firebase.database().ref('requests');
+      var newRequest = requestRef.push();
+      newRequest.set({
+        'userid': userid,
+        'title': title,
+        'location': location,
+        'description': description,
+      });
+    }
     
     render() {
         return (
@@ -47,7 +60,7 @@ export default class NewJobScreen extends React.Component {
 
             <View style={styles.loginContainer}>
               <TouchableOpacity style={styles.loginItem}>
-                <Text onPress={()=> this.loginUser(this.state.email, this.state.password)} 
+                <Text onPress={()=> this.publishRequest()} 
                 style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Publish Request </Text>
               </TouchableOpacity>
            </View>
