@@ -41,6 +41,17 @@ export default class EditProfileScreen extends React.Component {
       });
   }
 
+  saveChanges() {
+    const {userid} = this.state;
+    firebase.database().ref('users/').child(userid).set({
+      name: this.state.name,
+      email: this.state.email,
+      description: '',
+    })
+      .then((data) => this.props.navigation.pop())
+      .catch((err) => this.setState({error: ''+err}))
+  }
+
   render() {
       if (this.state.loading) {
         return <SplashScreen/>;
@@ -51,12 +62,13 @@ export default class EditProfileScreen extends React.Component {
             <View style={styles.headerContainer}>
               <Text style={styles.header}>Personal information</Text>
             </View>
+            <Text>Name</Text>
             <TextInput
               style={styles.input}
               defaultValue={'' + this.state.name}
               onChangeText= {(name)=> this.setState({name})}
             />
-
+            <Text>Email</Text>
             <TextInput
               style={styles.input}
               defaultValue={'' + this.state.email}
@@ -66,18 +78,10 @@ export default class EditProfileScreen extends React.Component {
 
             <View style={styles.loginContainer}>
               <TouchableOpacity style={styles.loginItem}>
-                <Text onPress={()=> this.loginUser(this.state.email, this.state.password)}
-                      style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Login! </Text>
+                <Text onPress={()=> this.saveChanges()}
+                      style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Save!</Text>
               </TouchableOpacity>
             </View>
-
-            <Button
-              gradient title='Home!'
-              onPress = {()=> {
-                firebase.auth().signInWithEmailAndPassword('test@test.de','123456');
-                this.props.navigation.navigate('Main');
-              }}>
-            </Button>
           </View>
         </View>
       );
@@ -93,12 +97,19 @@ const styles = StyleSheet.create({
     height:'100%'
   },
   loginContainer : {
-    margin: 30,
+    margin: 10,
+  },
+
+  loginItem : {
+    padding: 20,
+    borderRadius: 40,
+    borderWidth: 1,
+    borderColor: '#ddd'
   },
 
   headerContainer : {
     width: 100 + "%",
-    height: 120,
+    height: 40,
     marginTop:25,
     paddingBottom: 20,
   },
