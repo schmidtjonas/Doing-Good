@@ -59,7 +59,6 @@ export default class App extends Component {
     if(loading){
       return <SplashScreen/>;
     }
-    const arr = ['A', 'B', 'C'];
     return (
       
       <View style={{flex:1}}>
@@ -71,8 +70,15 @@ export default class App extends Component {
             this.swiper = swiper
           }}>
           
-          {keys.map(item => {
-            return <Card style={[styles.card, styles.card1]}><Text style={styles.label}>{data[keys]}</Text></Card>;
+          {keys.map(key => {
+            return <Card style={[styles.card, styles.card1]} key={key}>
+              <Text style={styles.label}>
+                Titel: {data[key]['title']}
+              </Text>
+              <Text>
+                Date: {data[key]['date']}
+              </Text>
+            </Card>;
           })}
           
         </CardStack>
