@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from 'firebase';
 import {
   StyleSheet,
   Text,
@@ -15,9 +16,15 @@ const { width, height } = Dimensions.get("window");
 
 export default class ProfileScreen extends React.Component {
 
-
+  constructor(props){
+    super(props);
+    this.state = ({
+      user: firebase.auth().currentUser,
+    })
+}
 
   renderHeader = () => {
+    const { user } = this.state;
     const imageUrl = 'https://www.welt.de/img/vermischtes/mobile166641813/3792501637-ci102l-w1024/CRESTED-BLACK-MACAQUE.jpg';
     return (
     <View style={styles.headerWrapper}>
