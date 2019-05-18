@@ -13,7 +13,6 @@ export default class JobPreview extends React.Component {
     state = {
         id : 0,
         title: "Test",
-        fontFamily: "Roboto",
         location: "Stahnsdorferstraße 144B",
         distance: 0,
     }
