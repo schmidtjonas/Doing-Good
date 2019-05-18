@@ -38,15 +38,16 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
         <View style={styles.container}> 
-          <Text style={styles.text}>Image</Text>
+          <View style={{justifyContent:'center', alignItems: 'center', marginTop: 10, borderRadius:40, overflow:'hidden'}}>
             <Image
               style={styles.strech}
               source={require('../assets/logo.png')}
               /> 
+          </View>
           <View style={styles.loginContainer} >
             <View style={styles.headerContainer}>
               
-              <Text style={styles.header}>TEST</Text>
+              <Text style={styles.header}>DOING GOOD</Text>
                 
             </View>
             <TextInput 
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
     },
     loginContainer : {
       margin: 30,
+      marginTop: 0
     },
     loginItem : {
       padding: 20,
@@ -128,7 +130,6 @@ const styles = StyleSheet.create({
       width: '100%',
       position: 'absolute',
       bottom:0,
-      
     },
     bottomItem : {
       width: '100%',
@@ -139,9 +140,9 @@ const styles = StyleSheet.create({
     signUpItem : {
       textAlign:'center',
       justifyContent:'center'
-      
     },
     strech :{
+      
       width: 64,
       height: 64,
     }

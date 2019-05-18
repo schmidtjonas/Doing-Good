@@ -63,6 +63,7 @@ export default class ProfileScreen extends React.Component {
           <View style={{ flexDirection: "row", flex: 1 }}>
             <View style={{ flex: 2, alignItems: "center" }}>
               <Text>{karmapoints}</Text>
+              
               <Text>Karmapoints</Text>
             </View>
             <View style={{ flex: 1, alignItems: "center" }}>

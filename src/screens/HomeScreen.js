@@ -25,6 +25,22 @@ export default class App extends Component {
   }
 
   componentDidMount(){
+
+    this.focusListener = this.props.navigation.addListener("didFocus", () => {
+      const userid = firebase.auth().currentUser.uid;
+      firebase.database().ref('requests').once('value')
+      .then((snapshot) => {
+        let data = snapshot.val();
+        let keys = Object.keys(data);
+        this.setState({data: data, keys: keys});
+      })
+      firebase.database().ref('users').once('value')
+      .then((snapshot) => {
+        let users = snapshot.val();
+        this.setState({users: users, loading: false, userid});
+      })
+    });
+
     const userid = firebase.auth().currentUser.uid;
     firebase.database().ref('requests').once('value')
     .then((snapshot) => {
@@ -37,6 +53,10 @@ export default class App extends Component {
       let users = snapshot.val();
       this.setState({users: users, loading: false, userid});
     })
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
   }
 
   match(key){
@@ -86,10 +106,7 @@ export default class App extends Component {
                       {data[key]['description']}
                       </Text>
                       <Text>
-                        Date: {data[key]['date']}
-                      </Text>
-                      <Text>
-                        Name vom anderen Dude: {users[data[key]['userid']]['name']}
+                      {users[data[key]['userid']]['name']} needs help at {data[key]['date']}
                       </Text>
                     </View>
             </Card>;
@@ -149,7 +166,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   bottomCard : {
-
+    padding: 10,
   },
   card1: {
     backgroundColor: '#FE474C',

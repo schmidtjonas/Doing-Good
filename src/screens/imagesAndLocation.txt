@@ -1,0 +1,22 @@
+
+1. have an open ear for grandpa's stories
+ <Image 
+        source={{uri: 'http://www.sal-pflegeheime.de/web/1_Bilder/rix_eingang12.jpg'}}
+    /> 
+Location: Seniorenheim am Lietzensee GmbH
+            Delbrückstr. 25
+            12051 Berlin
+
+2. clothes donation Munich
+<Image 
+        source={{uri: 'https://www.neue-woche.com/wp-content/uploads/2016/06/Kleiderspende.jpg'}
+    /> 
+Location: Diakonia
+            Stahlgruberring 8
+            81829  Munich
+
+3. read books to children in kindergarten
+<Image source={{uri: 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fst2.depositphotos.com%2F2800301%2F11379%2Fv%2F950%2Fdepositphotos_113792586-stock-illustration-kindergarten-doodle-pictures-on-white.jpg&f=1'}}/>
+Location: MITTE kindergarten
+            GARTENSTRASSE 107
+            10115 Berlin
