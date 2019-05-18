@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 import JobPreview from '../components/JobPreview';
+import SplashScreen from '../components/SplashScreen';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
@@ -24,6 +25,7 @@ export default class ProfileScreen extends React.Component {
       name: '',
       karmapoints: 0,
       description: '',
+      loading: true,
     })
   }
 
@@ -35,6 +37,7 @@ export default class ProfileScreen extends React.Component {
           name: snapshot.child(userid).child('name').val(),
           karmapoints: snapshot.child(userid).child('karmapoints').val(),
           description: snapshot.child(userid).child('description').val(),
+          loading: false,
       })
       });
   }
@@ -97,6 +100,10 @@ export default class ProfileScreen extends React.Component {
   }
 
   render() {
+    if(this.state.loading){
+      return <SplashScreen/>;
+    }
+
     //if abfrage ob eigene anfragen ansonsten keine akriven anzeigen
     const { name, description } = this.state;
     return (
