@@ -16,12 +16,17 @@ export default class SignUpScreen extends React.Component {
             email : '',
             password : '',
             error: '',
+            name: '',
         })
     }
 
     signUpUser = (email,password) => {
       firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => { this.props.navigation.navigate('Main')})
+      .then((res) => { 
+        firebase.database().ref('users/' + res.user.uid).set({
+          name: this.state.name,
+          email: email});
+        this.props.navigation.navigate('Main')})
       .catch((err) => {
           this.setState({ error: 'Authentication failed.\n'+err });        
       });
@@ -45,7 +50,11 @@ export default class SignUpScreen extends React.Component {
                 secureTextEntry={true} 
                 onChangeText= {(password)=> this.setState({password})}
             />      
-            
+            <TextInput 
+              style={styles.input}
+              placeholder='Name' 
+              onChangeText= {(name)=> this.setState({name})}
+            />    
             <Button 
                 gradient title='Sign Up!'
                 onPress = {()=> this.signUpUser(this.state.email, this.state.password)}>

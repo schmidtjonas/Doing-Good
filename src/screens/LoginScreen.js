@@ -54,7 +54,7 @@ export default class LoginScreen extends React.Component {
                 onPress = {()=> this.loginUser(this.state.email, this.state.password)}>
             </Button>
             <Button 
-                gradient title='Sign Up!'
+                gradient title='Go to Sign Up!'
                 onPress = {()=> {this.onSignUp()}}>
             </Button>
             <Text>{this.state.error}</Text>
