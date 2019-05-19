@@ -13,6 +13,7 @@ import {
 import JobPreview from '../components/JobPreview';
 import SplashScreen from '../components/SplashScreen';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Colors from '../assets/Colors';
 
 const { width, height } = Dimensions.get("window");
 
@@ -68,26 +69,25 @@ export default class ProfileScreen extends React.Component {
           }}
         >
           <View style={{ flexDirection: "row", flex: 1 }}>
-            <View style={{ flex: 2, alignItems: "center" }}>
-              <Text>{karmapoints}</Text>
-              
-              <Text>Karmapoints</Text>
-            </View>
             <View style={{ flex: 1, alignItems: "center" }}>
-              <Text>5 Sterne</Text>
+              <Text>{karmapoints}</Text>         
+              <Text>Karmapoints</Text>
             </View>
           </View>
           <View
             style={{
+              marginTop:10,
               borderWidth: 1,
               width: "100%",
               marginLeft: 1,
               alignItems: "center",
-              borderRadius: 5,
+              borderRadius: 10,
+              padding:5,
+              borderColor: Colors.weldonBlue,
             }}
           >
             <TouchableOpacity>
-              <Text onPress={() => {this.props.navigation.navigate('Edit')}}>Edit Profile</Text>
+              <Text style={{color: Colors.weldonBlue }} onPress={() => {this.props.navigation.navigate('Edit')}}>Edit Profile</Text>
             </TouchableOpacity>
             
           </View>
@@ -151,7 +151,8 @@ const styles = StyleSheet.create({
     height: width * 0.2,
     borderRadius: width * 0.5,
     borderWidth: 1,
-    marginRight: 10
+    marginRight: 10,
+    borderColor: Colors.weldonBlue,
   },
   image: {
     height: width * 0.33,
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
     padding:20,
     paddingBottom: 10,
     paddingTop: 10,
-    borderBottomColor :'grey',
+    borderBottomColor : Colors.weldonBlue,
     borderBottomWidth:1,
   },
   newRequest : {

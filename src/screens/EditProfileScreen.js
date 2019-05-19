@@ -62,7 +62,7 @@ export default class EditProfileScreen extends React.Component {
         <View style={styles.container}>
           <View style={styles.loginContainer} >
             <View style={styles.headerContainer}>
-              <Text style={styles.header}>Personal information</Text>
+              <Text style={styles.header}>Personal Information</Text>
             </View>
             <Text>Name</Text>
             <TextInput
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     textAlign: 'center',
+    color: Colors.weldonBlue,
     //backgroundColor: Colors.sunsetOrange,
   },
 
