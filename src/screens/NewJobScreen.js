@@ -9,6 +9,7 @@ import {
 import firebase from 'firebase';
 import { TouchableHighlight, TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import DatePicker from 'react-native-datepicker';
+import Colors from '../assets/Colors';
 
 export default class NewJobScreen extends React.Component {
 
@@ -47,7 +48,7 @@ export default class NewJobScreen extends React.Component {
         <View style={styles.container}>   
           <View style={styles.loginContainer} >
             <View style={styles.headerContainer}>
-              <Text style={styles.header}>Add new request</Text>
+              <Text style={styles.header}>Add new Quest</Text>
             </View>
             <TextInput 
                 style={styles.input}
@@ -75,7 +76,7 @@ export default class NewJobScreen extends React.Component {
 
             <TextInput 
                 style={styles.inputDesc}
-                placeholder='Description' 
+                placeholder='Description - What do you need help with?' 
                 onChangeText= {(description)=> this.setState({description})}
             />   
             <View style={{alignItems:'center'}}>
@@ -97,6 +98,7 @@ export default class NewJobScreen extends React.Component {
                         marginLeft: 0
                         },
                         dateInput: {
+                        borderRadius:10,
                         marginLeft: 36
                         }
                     }}
@@ -110,7 +112,7 @@ export default class NewJobScreen extends React.Component {
             <View style={styles.loginContainer}>
               <TouchableOpacity style={styles.loginItem}>
                 <Text onPress={()=> this.publishRequest()} 
-                style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Publish Request </Text>
+                style={{textAlign:'center', fontSize: 18, color:Colors.weldonBlue}}>Publish Quest </Text>
               </TouchableOpacity>
            </View>
 
@@ -138,13 +140,13 @@ const styles = StyleSheet.create({
       borderColor: '#ddd'
     },
     headerContainer : {
-      marginTop: 30,
       marginBottom: 50,
     },
     header : {
       fontWeight: 'bold',
       fontSize: 18,
       textAlign: 'center', 
+      color: Colors.weldonBlue,
     },
     input: {
       backgroundColor: '#fff',

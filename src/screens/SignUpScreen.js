@@ -8,6 +8,7 @@ import {
   Button,
 } from 'react-native';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import Colors from '../assets/Colors';
 
 export default class SignUpScreen extends React.Component {
 
@@ -52,7 +53,10 @@ export default class SignUpScreen extends React.Component {
         <View style={styles.container}>   
           <View style={styles.loginContainer} >
             <View style={styles.headerContainer}></View>
-              <Text>DOING GOOD</Text>
+              <Text style={{fontWeight: 'bold',
+                fontSize: 18,
+                textAlign: 'center', 
+                color: Colors.weldonBlue,}}>Sign Up</Text>
             <TextInput 
                 style={styles.input}
                 placeholder='Email'
@@ -67,20 +71,20 @@ export default class SignUpScreen extends React.Component {
             />      
             <TextInput 
                 style={styles.input}
-                placeholder='repeat Password' 
+                placeholder='Repeat Password' 
                 secureTextEntry={true}
                 onChangeText= {(password2)=> this.setState({password2})}
             />      
             <TextInput
               style={styles.input}
-              placeholder='Name'
+              placeholder='Username'
               onChangeText= {(name)=> this.setState({name})}
             />    
             
             <View style={styles.loginContainer}>
               <TouchableOpacity style={styles.loginItem}>
                 <Text onPress={()=> this.signUpUser(this.state.email, this.state.password)} 
-                style={{textAlign:'center', fontSize: 18, color:'#ddd'}}>Sign Up now! </Text>
+                style={{textAlign:'center', fontSize: 18, color:Colors.weldonBlue}}>Sign Up now! </Text>
               </TouchableOpacity>
            </View>
 
