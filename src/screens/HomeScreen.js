@@ -120,7 +120,12 @@ export default class App extends Component {
             }}>
               <Image source={require('../assets/red.png')} resizeMode={'contain'} style={{ height: 62, width: 62 }} />
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.button,styles.orange]} onPress={() => {
+            <TouchableOpacity style={{
+              padding: 20,
+              borderRadius: 40,
+              borderWidth: 1,
+              borderColor: '#ddd'
+    }} onPress={() => {
               this.swiper.goBackFromLeft();
             }}>
               <Image source={require('../assets/back.png')} resizeMode={'contain'} style={{ height: 32, width: 32, borderRadius: 5 }} />
