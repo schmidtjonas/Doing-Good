@@ -59,7 +59,13 @@ export default createBottomTabNavigator(
   Profile: ProfileStack,
   
 },{
+  swipeEnabled: true,
   tabBarOptions: {
-    activeTintColor: Colors.weldonBlue,
+    labelStyle:{
+      fontFamily: 'Roboto',
+      fontSize: 16,
+      color: Colors.weldonBlue,
+    }
   },
+  
 });
