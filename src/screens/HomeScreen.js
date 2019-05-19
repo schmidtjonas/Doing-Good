@@ -45,26 +45,7 @@ export default class App extends Component {
       })
     });
 
-<<<<<<< HEAD
-=======
-    const userid = firebase.auth().currentUser.uid;
-    firebase.database().ref('requests').once('value')
-    .then((snapshot) => {
-      let data = snapshot.val();
-      let keys = Object.keys(data);
-      this.setState({data: data, keys: keys});
-    })
-    firebase.database().ref('users').once('value')
-    .then((snapshot) => {
-      let users = snapshot.val();
-      this.setState({users: users, loading: false, userid});
-    })
-
-
-
->>>>>>> b7e150dc53631d63db3e44d77e8c54205b94f6b6
   }
-
   componentWillUnmount() {
     this.focusListener.remove();
   }

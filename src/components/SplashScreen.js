@@ -11,18 +11,13 @@ export default class SplashScreen extends React.Component {
     render() {
       return (
         <View>
-          <Text style={styles.text}>
+          <Text style={{marginTop: 300,
+                        textAlign: "center",
+                        fontFamily: "Roboto",
+                        fontSize: 24,}}>
             Loading, please wait.
           </Text>
         </View>
       );
     }
   }
-const styles = StyleSheet.create({
-  text:{
-    textAlignVertical: 'center',
-    textAlign: 'center',
-    fontFamily: 'Roboto',
-    fontSize: 24,
-  }
-});
