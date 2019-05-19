@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  default as Alert,
   Button,
   Dimensions,
   StyleSheet,
@@ -11,6 +12,8 @@ import Colors from '../assets/Colors';
 import firebase from 'firebase'
 import SplashScreen from '../components/SplashScreen'
 import {TouchableOpacity} from "react-native-gesture-handler";
+import ImagePicker from 'react-native-image-picker';
+import ImageCropper from 'react-native-image-crop-picker';
 const { width, height } = Dimensions.get("window");
 
 export default class EditProfileScreen extends React.Component {
@@ -44,14 +47,74 @@ export default class EditProfileScreen extends React.Component {
 
   saveChanges() {
     const {userid} = this.state;
-    firebase.database().ref('users/').child(userid).set({
-      name: this.state.name,
-      email: this.state.email,
-      description: this.state.description,
-      distance: this.state.distance,
-    })
+    let updates = {};
+    updates['/users/'+userid+'/name'] = this.state.name;
+    updates['/users/'+userid+'/email'] = this.state.email;
+    updates['/users/'+userid+'/description'] = this.state.description;
+    updates['/users/'+userid+'/distance'] = this.state.distance;
+    firebase.database().ref().update(updates)
       .then((data) => this.props.navigation.pop())
       .catch((err) => this.setState({error: ''+err}))
+  }
+
+
+  openPicker() {
+    const options = {
+      title: 'Select profile picture',
+      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    /**
+     * The first arg is the options object for customization (it can also be null or omitted for default options),
+     * The second arg is the callback which sends object: response (more info in the API Reference)
+     */
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          image: source,
+        },
+          this.cropImage
+        );
+      }
+    });
+  }
+
+  cropImage() {
+    if (!this.state.image) {
+      return Alert.alert('No image', 'Before open cropping only, please select image');
+    }
+
+    ImageCropper.openCropper({
+      path: this.state.image.uri,
+      width: 200,
+      height: 200
+    }).then(image => {
+      console.log('received cropped image', image);
+      this.setState({
+        image: {uri: image.path, width: image.width, height: image.height, mime: image.mime},
+        images: null
+      });
+    }).catch(e => {
+      console.log(e);
+      Alert.alert(e.message ? e.message : e);
+    });
   }
 
   render() {
@@ -62,7 +125,13 @@ export default class EditProfileScreen extends React.Component {
         <View style={styles.container}>
           <View style={styles.loginContainer} >
             <View style={styles.headerContainer}>
-              <Text style={styles.header}>Personal information</Text>
+              <Text style={styles.header}>Personal Information</Text>
+            </View>
+            <View>
+              <TouchableOpacity>
+                <Text onPress={()=> this.openPicker()}
+                      style={{textAlign:'center', fontSize: 12, color: Colors.weldonBlue}}>Change profile picture</Text>
+              </TouchableOpacity>
             </View>
             <Text>Name</Text>
             <TextInput
@@ -142,6 +211,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     textAlign: 'center',
+    color: Colors.weldonBlue,
     //backgroundColor: Colors.sunsetOrange,
   },
 
