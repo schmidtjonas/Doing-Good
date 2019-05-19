@@ -32,6 +32,24 @@ export default class ProfileScreen extends React.Component {
   }
 
   componentDidMount() {
+    this.focusListener = this.props.navigation.addListener("didFocus", () => { 
+      const {userid} = this.state;
+    firebase.database().ref('users/').child(userid).once('value')
+      .then((snapshot) => {
+        this.setState({
+          name: snapshot.child('name').val(),
+          karmapoints: snapshot.child('karmapoints').val(),
+          description: snapshot.child('description').val(),
+      })
+      });
+    firebase.database().ref('requests').orderByChild('userid').equalTo(userid).once('value')
+    .then((snapshot) => {
+      this.setState({
+        matches: snapshot.val(),
+        loading: false,
+      })
+    });
+    });
     const {userid} = this.state;
     firebase.database().ref('users/').child(userid).once('value')
       .then((snapshot) => {
@@ -48,6 +66,10 @@ export default class ProfileScreen extends React.Component {
         loading: false,
       })
     });
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
   }
 
   renderHeader = () => {
