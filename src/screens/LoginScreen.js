@@ -75,13 +75,6 @@ export default class LoginScreen extends React.Component {
               <Text style={{textAlign:'center'} }>Not registered yet? <Text onPress={()=> this.onSignUp()} style={{fontWeight:'bold'}}>Sign Up! </Text></Text>   
             </View>
 
-            <Button 
-                gradient title='Home!'
-                onPress = {()=> {
-                  firebase.auth().signInWithEmailAndPassword('test@test.de','123456');
-                  this.props.navigation.navigate('Main');
-                }}>
-            </Button>
           </View>
         </View>
         
