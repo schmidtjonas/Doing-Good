@@ -38,6 +38,8 @@ export default class NewJobScreen extends React.Component {
         'postcode': postcode,
         'date': date,
         'description': description,
+        'lat': 52.393,
+        'lng': 13.1,
       });
       this.props.navigation.navigate('Profile');
     }
