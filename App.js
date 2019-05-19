@@ -7,6 +7,7 @@ import Colors from './src/assets/Colors';
 export default class App extends Component {
 
   componentWillMount(){
+    console.disableYellowBox = true;
     if (!firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyBM_uen5b9n1ho0YwKILCTHORJHXeScVQA",

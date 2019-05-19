@@ -79,7 +79,9 @@ export default class ProfileScreen extends React.Component {
     <View style={styles.headerWrapper}>
       <View style={{ marginTop: 10, paddinTop: 20, flexDirection: "row" }}>
         <View style={styles.profileImage} >
-            
+            <Image
+              style={{width:100, height:100}}
+              source={require('../assets/hasso.jpg')} />
         </View>
 
         <View
@@ -90,10 +92,9 @@ export default class ProfileScreen extends React.Component {
             padding: 5
           }}
         >
-          <View style={{ flexDirection: "row", flex: 1 }}>
-            <View style={{ flex: 1, alignItems: "center" }}>
-              <Text>{karmapoints}</Text>         
-              <Text>Karmapoints</Text>
+          <View style={{ flexDirection: "row", flex: 1, paddingBottom: 40}}>
+            <View style={{ flex: 1, alignItems: "center" , }}>
+              <Text style ={{fontWeight:'bold', fontSize:16}}>{karmapoints}<Image style={{height:30, width:30}} source={require('../assets/karmapoints_icon.png')}  />  <Text>Karmapoints</Text></Text>    
             </View>
           </View>
           <View
@@ -175,6 +176,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginRight: 10,
     borderColor: Colors.weldonBlue,
+    overflow:'hidden',
   },
   image: {
     height: width * 0.33,
