@@ -19,7 +19,7 @@ class JobPreview extends React.Component {
     }
 
     showJob(){
-        this.props.navigation.push('Quest', {itemid: this.props.item.id});
+        
     }
     
     render(){

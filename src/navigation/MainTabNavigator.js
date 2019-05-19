@@ -10,7 +10,6 @@ import EditProfileScreen from '../screens/EditProfileScreen';
 import NewJobScreen from '../screens/NewJobScreen';
 import MatchesScreen from '../screens/MatchesScreen';
 import Colors from '../assets/Colors';
-import QuestFocusScreen from '../screens/QuestFocusScreen';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -50,9 +49,6 @@ const MatchesStack = createStackNavigator({
         header: null,
       },
   },
-  Quest: {
-    screen: QuestFocusScreen,
-  }
 });
 
 export default createBottomTabNavigator(
