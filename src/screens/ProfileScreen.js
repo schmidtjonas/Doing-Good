@@ -26,6 +26,7 @@ export default class ProfileScreen extends React.Component {
       karmapoints: 0,
       description: '',
       loading: true,
+      matches: null
     })
   }
 
@@ -37,9 +38,16 @@ export default class ProfileScreen extends React.Component {
           name: snapshot.child('name').val(),
           karmapoints: snapshot.child('karmapoints').val(),
           description: snapshot.child('description').val(),
-          loading: false,
       })
       });
+    firebase.database().ref('requests').orderByChild('userid').equalTo(userid).once('value')
+    .then((snapshot) => {
+      console.log(snapshot.val())
+      this.setState({
+        matches: snapshot.val(),
+        loading: false,
+      })
+    });
   }
 
   renderHeader = () => {
