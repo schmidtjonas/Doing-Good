@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform , Icon} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -67,5 +67,4 @@ export default createBottomTabNavigator(
       color: Colors.weldonBlue,
     }
   },
-  
 });
