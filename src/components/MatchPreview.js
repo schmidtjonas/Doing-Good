@@ -9,7 +9,7 @@ import {
 import Colors from "../assets/Colors";
 import { withNavigation } from "react-navigation";
 
-class JobPreview extends React.Component {
+class MatchPreview extends React.Component {
 
     showJob(){
         
@@ -78,4 +78,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withNavigation(JobPreview);
+export default withNavigation(MatchPreview);

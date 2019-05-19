@@ -78,7 +78,7 @@ export default class NewJobScreen extends React.Component {
 
             <TextInput 
                 style={styles.inputDesc}
-                placeholder='Description - What do you need help' 
+                placeholder='Description - What do you need help with?' 
                 onChangeText= {(description)=> this.setState({description})}
             />   
             <View style={{alignItems:'center'}}>

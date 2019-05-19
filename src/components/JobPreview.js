@@ -7,8 +7,9 @@ import {
     TouchableOpacity
 } from "react-native";
 import Colors from "../assets/Colors";
+import { withNavigation } from "react-navigation";
 
-export default class JobPreview extends React.Component {
+class JobPreview extends React.Component {
 
     state = {
         id : 0,
@@ -82,3 +83,5 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
 });
+
+export default withNavigation(JobPreview);
