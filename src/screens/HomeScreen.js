@@ -103,7 +103,7 @@ export default class App extends Component {
                       </Text>
                       <View style={styles.bottomItemCard}>
                         <Text style={{textAlign:'center', justifyContent:'center', alignContent: 'center'}}>
-                        {users[data[key]['userid']]['name']} needs help at {data[key]['date']}
+                        {users[data[key]['userid']]['name']} needs help on {data[key]['date']}
                         </Text>
                         <Text><Icon name='md-pin' size={18} color='#000' /> {data[key]['city']}</Text>
                       </View>
