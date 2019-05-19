@@ -4,7 +4,9 @@ import { createAppContainer, createSwitchNavigator, createStackNavigator } from 
 import MainTabNavigator from './MainTabNavigator';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
-const AuthStack = createStackNavigator({ LogIn: LoginScreen, SignUp: SignUpScreen, });
+const AuthStack = createStackNavigator({ LogIn: {screen: LoginScreen, navigationOptions: {
+  header: null,
+},},  SignUp: SignUpScreen, });
 
 export default createAppContainer(createSwitchNavigator({
   // You could add another route here for authentication.

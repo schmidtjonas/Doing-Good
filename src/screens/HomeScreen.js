@@ -10,6 +10,7 @@ import {
 import firebase from 'firebase';
 import SplashScreen from '../components/SplashScreen';
 import CardStack, { Card } from 'react-native-card-stack-swiper';
+import Colors from '../assets/Colors';
 
 
 export default class App extends Component {
@@ -51,9 +52,12 @@ export default class App extends Component {
   }
 
   match(key){
-    const {userid} = this.state;
+    const {userid, users} = this.state;
     var ref = firebase.database().ref('users').child(userid).child('matches');
     ref.child(key).set(1);
+    let updates = {};
+    updates['/users/'+userid+'/karmapoints'] = users[userid]['karmapoints']+100;
+    firebase.database().ref().update(updates);
   }
 
   decline(key){
@@ -113,9 +117,9 @@ export default class App extends Component {
             </TouchableOpacity>
             <TouchableOpacity style={{
               padding: 20,
-              borderRadius: 40,
-              borderWidth: 1,
-              borderColor: '#ddd'
+              marginRight: 10,
+              marginLeft: 10
+              
     }} onPress={() => {
               this.swiper.goBackFromLeft();
             }}>
@@ -182,9 +186,9 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   buttonContainer:{
-    width:220,
     flexDirection:'row',
-    justifyContent: 'space-between',
+    width:'100%',
+    justifyContent: 'center',
   },
   button:{
     shadowColor: 'rgba(0,0,0,0.3)',
@@ -212,7 +216,7 @@ const styles = StyleSheet.create({
     height:75,
     backgroundColor:'#fff',
     borderRadius:75,
-    borderWidth:6,
+    borderWidth:3,
     borderColor:'#01df8a',
   },
   red:{
@@ -220,7 +224,7 @@ const styles = StyleSheet.create({
     height:75,
     backgroundColor:'#fff',
     borderRadius:75,
-    borderWidth:6,
-    borderColor:'#fd267d',
+    borderWidth:3,
+    borderColor: Colors.sunsetOrange,
   }
 });

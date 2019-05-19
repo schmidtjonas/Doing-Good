@@ -147,7 +147,7 @@ export default class ProfileScreen extends React.Component {
         </View>
 
         <FlatList
-          data = {Object.keys(this.state.matches).map(key => {
+          data = {this.state.matches == null ? [] : Object.keys(this.state.matches).map(key => {
             return this.state.matches[key];
           })}
           keyExtractor={this.returnKey}

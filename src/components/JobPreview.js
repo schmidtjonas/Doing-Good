@@ -17,7 +17,10 @@ export default class JobPreview extends React.Component {
         distance: 0,
     }
 
-    
+    showJob(){
+        
+    }
+
     render(){
         return (
             <TouchableOpacity onPress={() => this.showJob()} style={styles.productContainer}>
