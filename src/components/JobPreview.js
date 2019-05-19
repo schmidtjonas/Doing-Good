@@ -24,7 +24,7 @@ export default class JobPreview extends React.Component {
                 <View style={styles.productLeft}>
                     <Image
                         style={{width: 150, height: 150}}
-                        source={{uri: 'https://www.welt.de/img/vermischtes/mobile166641813/3792501637-ci102l-w1024/CRESTED-BLACK-MACAQUE.jpg'}}
+                        source={require('../assets/logo.png')}
                     />
                 </View>
                 <View style={styles.productRight}>
@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
     productLeft : {
         justifyContent: 'center',
         //alignItems: 'center',
-        backgroundColor: Colors.beige,
+        backgroundColor: '#f6f9f9',
         flex: 1,
 
     },
     productRight : {
         padding: 20,
         justifyContent: 'center',
-        backgroundColor: Colors.beige,
+        backgroundColor: '#f6f9f9',
         flex: 1,
     },
     productTitle : {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 import HomeScreen from '../screens/HomeScreen';
@@ -47,10 +48,15 @@ const MatchesStack = createStackNavigator({
   },
 });
 
-export default createBottomTabNavigator({
+export default createBottomTabNavigator(
+  {
   Home: HomeStack,
   Matches: MatchesStack,
   AddJob: NewJobStack,
   Profile: ProfileStack,
   
+},{
+  tabBarOptions: {
+    activeTintColor: Colors.weldonBlue,
+  },
 });

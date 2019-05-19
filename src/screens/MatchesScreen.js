@@ -11,6 +11,7 @@ import firebase from 'firebase';
 import { TouchableHighlight, TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import MatchPreview from '../components/MatchPreview';
 import SplashScreen from '../components/SplashScreen';
+import Colors from '../assets/Colors';
 
 export default class NewJobScreen extends React.Component {
 
@@ -55,8 +56,9 @@ export default class NewJobScreen extends React.Component {
             </View>
             <ScrollView>
             <View style={styles.cardContainer}>
+            
             <FlatList
-                data={Object.keys(this.state.keys).map(key => {
+                data={this.state.keys == null ? [] : Object.keys(this.state.keys).map(key => {
                   return this.state.requests[key];
                 })}
                 renderItem={({ item }) => (
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 18,
       textAlign: 'center', 
+      color: Colors.weldonBlue,
     },
     input: {
       backgroundColor: '#fff',
