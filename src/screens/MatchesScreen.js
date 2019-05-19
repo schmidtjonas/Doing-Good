@@ -56,9 +56,11 @@ export default class NewJobScreen extends React.Component {
             <ScrollView>
             <View style={styles.cardContainer}>
             <FlatList
-                data={[1,2,3,4,5,6,7,8]}
+                data={Object.keys(this.state.keys).map(key => {
+                  return this.state.requests[key];
+                })}
                 renderItem={({ item }) => (
-                    <MatchPreview />
+                    <MatchPreview item={item} />
                 )}
                 keyExtractor={(item, index) => index}
             />

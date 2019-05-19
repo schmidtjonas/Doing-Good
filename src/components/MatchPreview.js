@@ -31,8 +31,8 @@ export default class JobPreview extends React.Component {
                     />
                 </View>
                 <View style={styles.productRight}>
-                    <Text style={styles.productTitle}>{this.state.title}</Text>
-                    <Text style={styles.productAdress}>{this.state.location}</Text>
+                    <Text style={styles.productTitle}>{this.props.item.title}</Text>
+                    <Text style={styles.productAdress}>{this.props.item.description}</Text>
                 </View>
             </TouchableOpacity>
         );
