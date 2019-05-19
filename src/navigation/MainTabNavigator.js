@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform , Icon} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -10,6 +10,7 @@ import EditProfileScreen from '../screens/EditProfileScreen';
 import NewJobScreen from '../screens/NewJobScreen';
 import MatchesScreen from '../screens/MatchesScreen';
 import Colors from '../assets/Colors';
+import QuestFocusScreen from '../screens/QuestFocusScreen';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -47,8 +48,11 @@ const MatchesStack = createStackNavigator({
       screen : MatchesScreen,
       navigationOptions: {
         header: null,
-    },
+      },
   },
+  Quest: {
+    screen: QuestFocusScreen,
+  }
 });
 
 export default createBottomTabNavigator(
@@ -59,7 +63,12 @@ export default createBottomTabNavigator(
   Profile: ProfileStack,
   
 },{
+  swipeEnabled: true,
   tabBarOptions: {
-    activeTintColor: Colors.weldonBlue,
+    labelStyle:{
+      fontFamily: 'Roboto',
+      fontSize: 18,
+      color: Colors.weldonBlue,
+    }
   },
 });
