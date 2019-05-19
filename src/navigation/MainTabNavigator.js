@@ -63,7 +63,7 @@ export default createBottomTabNavigator(
   tabBarOptions: {
     labelStyle:{
       fontFamily: 'Roboto',
-      fontSize: 16,
+      fontSize: 18,
       color: Colors.weldonBlue,
     }
   },
