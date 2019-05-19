@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import NewJobScreen from '../screens/NewJobScreen';
+import MatchScreen from '../screens/MatchScreen';
 import MatchesScreen from '../screens/MatchesScreen';
 import Colors from '../assets/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -77,6 +78,9 @@ const MatchesStack = createStackNavigator({
       navigationOptions: {
         header: null,
       },
+  },
+  Match: {
+    screen : MatchScreen,
   },
 });
 

@@ -12,7 +12,7 @@ import { withNavigation } from "react-navigation";
 class MatchPreview extends React.Component {
 
     showJob(){
-        
+        this.props.navigation.push('Match', { itemId : this.props.item.title})
     }
     
     render(){
