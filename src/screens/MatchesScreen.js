@@ -29,7 +29,6 @@ export default class NewJobScreen extends React.Component {
     const {userid} = this.state;
     firebase.database().ref('users/').child(userid).child('matches').orderByValue().equalTo(1).once('value')
       .then((snapshot) => {
-        console.log(snapshot.val())
         this.setState({
           keys: snapshot.val(),
       })
