@@ -42,7 +42,6 @@ export default class ProfileScreen extends React.Component {
       });
     firebase.database().ref('requests').orderByChild('userid').equalTo(userid).once('value')
     .then((snapshot) => {
-      console.log(snapshot.val())
       this.setState({
         matches: snapshot.val(),
         loading: false,

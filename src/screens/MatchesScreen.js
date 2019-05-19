@@ -10,38 +10,43 @@ import {
 import firebase from 'firebase';
 import { TouchableHighlight, TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import MatchPreview from '../components/MatchPreview';
+import SplashScreen from '../components/SplashScreen';
 
 export default class NewJobScreen extends React.Component {
 
   constructor(props){
     super(props);
     this.state = ({
-      title : '',
-      street : '',
-      city: '',
-      postcode: '',
-      description : '',
       error: '',
       userid: firebase.auth().currentUser.uid,
-      date: '',
+      loading: true,
+      keys: null,
+      requests: null,
     });
   }
-    publishRequest(){
-      const {title, city, street, postcode, date, description, userid} = this.state;
-      var requestRef = firebase.database().ref('requests');
-      var newRequest = requestRef.push();
-      newRequest.set({
-        'userid': userid,
-        'title': title,
-        'city': city,
-        'street': street,
-        'postcode': postcode,
-        'date': date,
-        'description': description,
-      });
-    }
+
+  componentDidMount() {
+    const {userid} = this.state;
+    firebase.database().ref('users/').child(userid).child('matches').orderByValue().equalTo(1).once('value')
+      .then((snapshot) => {
+        console.log(snapshot.val())
+        this.setState({
+          keys: snapshot.val(),
+      })
+    });
+    firebase.database().ref('requests').once('value')
+    .then((snapshot) => {
+      this.setState({
+        requests: snapshot.val(),
+        loading: false,
+      })
+    });
+  }
     
     render() {
+      if (this.state.loading){
+        return <SplashScreen/>;
+      }
         return (
         <View style={styles.container}>   
           <View style={styles.loginContainer} >
