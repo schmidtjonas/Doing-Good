@@ -17,11 +17,13 @@ export default class JobPreview extends React.Component {
         distance: 0,
     }
 
-    showJob(){
 
+
+    showJob(){
     }
     
     render(){
+        this.showJob();
         return (
             <TouchableOpacity onPress={() => this.showJob()} style={styles.productContainer}>
                 <View style={styles.productLeft}>
@@ -31,8 +33,8 @@ export default class JobPreview extends React.Component {
                     />
                 </View>
                 <View style={styles.productRight}>
-                    <Text style={styles.productTitle}>{this.state.title}</Text>
-                    <Text style={styles.productAdress}>{this.state.location}</Text>
+                    <Text style={styles.productTitle}>{this.props.item.title}</Text>
+                    <Text style={styles.productAdress}>{this.props.item.description}</Text>
                 </View>
             </TouchableOpacity>
         );

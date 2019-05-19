@@ -42,7 +42,7 @@ export default class ProfileScreen extends React.Component {
       });
     firebase.database().ref('requests').orderByChild('userid').equalTo(userid).once('value')
     .then((snapshot) => {
-      console.log(snapshot.val())
+      //console.log(snapshot.val())
       this.setState({
         matches: snapshot.val(),
         loading: false,
@@ -101,7 +101,7 @@ export default class ProfileScreen extends React.Component {
   };
 
   renderJobPreview({ item }){
-      return <JobPreview/>;
+      return <JobPreview item = {item}/>;
   }
   
   returnKey(item){
@@ -125,7 +125,9 @@ export default class ProfileScreen extends React.Component {
         </View>
 
         <FlatList
-          data = {[1,2,3,4,5,6,7,8,9,10]}
+          data = {Object.keys(this.state.matches).map(key => {
+            return this.state.matches[key];
+          })}
           keyExtractor={this.returnKey}
           renderItem={this.renderJobPreview}
         />
