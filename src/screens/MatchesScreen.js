@@ -27,6 +27,7 @@ export default class NewJobScreen extends React.Component {
   }
 
   componentDidMount() {
+   this.focusListener = this.props.navigation.addListener("didFocus", () => { 
     const {userid} = this.state;
     firebase.database().ref('users/').child(userid).child('matches').orderByValue().equalTo(1).once('value')
       .then((snapshot) => {
@@ -41,6 +42,25 @@ export default class NewJobScreen extends React.Component {
         loading: false,
       })
     });
+   });
+    const {userid} = this.state;
+    firebase.database().ref('users/').child(userid).child('matches').orderByValue().equalTo(1).once('value')
+      .then((snapshot) => {
+        this.setState({
+          keys: snapshot.val(),
+      })
+    });
+    firebase.database().ref('requests').once('value')
+    .then((snapshot) => {
+      this.setState({
+        requests: snapshot.val(),
+        loading: false,
+      })
+    });
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
   }
     
     render() {
