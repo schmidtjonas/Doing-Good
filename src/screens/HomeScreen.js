@@ -21,6 +21,7 @@ export default class App extends Component {
       keys: null,
       data: null,
       users: null,
+      distance: null,
     });
   }
 
@@ -28,19 +29,24 @@ export default class App extends Component {
 
     this.focusListener = this.props.navigation.addListener("didFocus", () => {
       const userid = firebase.auth().currentUser.uid;
-      firebase.database().ref('requests').once('value')
-      .then((snapshot) => {
-        let data = snapshot.val();
-        let keys = Object.keys(data);
-        this.setState({data: data, keys: keys});
-      })
+      
       firebase.database().ref('users').once('value')
       .then((snapshot) => {
+        let distance = snapshot.val()[userid]['distance'];
+        firebase.database().ref('requests').orderByChild('distance').endAt(distance).once('value')
+        .then((snapshot2) => {
+          let data = snapshot2.val();
+          let keys = Object.keys(data);
+          this.setState({data: data, keys: keys});
         let users = snapshot.val();
-        this.setState({users: users, loading: false, userid});
+        this.setState({users: users, loading: false, userid, distance});
+        
+      })
       })
     });
 
+<<<<<<< HEAD
+=======
     const userid = firebase.auth().currentUser.uid;
     firebase.database().ref('requests').once('value')
     .then((snapshot) => {
@@ -56,6 +62,7 @@ export default class App extends Component {
 
 
 
+>>>>>>> b7e150dc53631d63db3e44d77e8c54205b94f6b6
   }
 
   componentWillUnmount() {
