@@ -11,6 +11,7 @@ import firebase from 'firebase';
 import SplashScreen from '../components/SplashScreen';
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 import Colors from '../assets/Colors';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export default class App extends Component {
@@ -94,7 +95,7 @@ export default class App extends Component {
                     </View>
                     <View style={styles.bottomCard}>
                       <Text style={styles.label}>
-                        {data[key]['title']}
+                        {data[key]['title'].charAt(0).toUpperCase() + data[key]['title'].slice(1)}
                       </Text>
                        
                       <Text>
@@ -104,6 +105,7 @@ export default class App extends Component {
                         <Text style={{textAlign:'center', justifyContent:'center', alignContent: 'center'}}>
                         {users[data[key]['userid']]['name']} needs help at {data[key]['date']}
                         </Text>
+                        <Text><Icon name='md-pin' size={18} color='#000' /> {data[key]['city']}</Text>
                       </View>
                     </View>
             </Card>;

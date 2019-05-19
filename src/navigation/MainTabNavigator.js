@@ -1,8 +1,6 @@
 import React from 'react';
-import { Platform , Icon} from 'react-native';
+import { Platform} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
 
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -10,6 +8,7 @@ import EditProfileScreen from '../screens/EditProfileScreen';
 import NewJobScreen from '../screens/NewJobScreen';
 import MatchesScreen from '../screens/MatchesScreen';
 import Colors from '../assets/Colors';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -19,6 +18,16 @@ const HomeStack = createStackNavigator({
     },
   },
 });
+
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home',
+  tabBarOptions: { 
+    activeTintColor: Colors.weldonBlue,
+  },
+  tabBarIcon: ({ focused }) => (
+    <Icon name='md-home' size={25} color={focused ? Colors.weldonBlue : Colors.stormcloud} /> 
+  ),
+};
 
 
 const ProfileStack = createStackNavigator({
@@ -33,6 +42,16 @@ const ProfileStack = createStackNavigator({
   }
 });
 
+ProfileStack.navigationOptions = {
+  tabBarLabel: 'Profile',
+  tabBarOptions: { 
+    activeTintColor: Colors.weldonBlue,
+  },
+  tabBarIcon: ({ focused }) => (
+    <Icon name='md-contact' size={25} color={focused ? Colors.weldonBlue : Colors.stormcloud} /> 
+  ),
+};
+
 const NewJobStack = createStackNavigator({
   Create: {
       screen : NewJobScreen,
@@ -41,6 +60,16 @@ const NewJobStack = createStackNavigator({
     },
   },
 });
+
+NewJobStack.navigationOptions = {
+  tabBarLabel: 'New Quest',
+  tabBarOptions: { 
+    activeTintColor: Colors.weldonBlue,
+  },
+  tabBarIcon: ({ focused }) => (
+    <Icon name='md-add' size={25} color={focused ? Colors.weldonBlue : Colors.stormcloud} /> 
+  ),
+};
 
 const MatchesStack = createStackNavigator({
   Matches: {
@@ -51,21 +80,20 @@ const MatchesStack = createStackNavigator({
   },
 });
 
+MatchesStack.navigationOptions = {
+  tabBarLabel: 'Matches',
+  tabBarOptions: { 
+    activeTintColor: Colors.weldonBlue,
+  },
+  tabBarIcon: ({ focused }) => (
+    <Icon name='md-heart' size={25} color={focused ? Colors.weldonBlue : Colors.stormcloud} /> 
+  ),
+};
+
 export default createBottomTabNavigator(
   {
   Home: HomeStack,
   Matches: MatchesStack,
   AddQuest: NewJobStack,
   Profile: ProfileStack,
-},{
-  tabBarOptions: {
-    labelStyle:{
-      fontFamily: 'Roboto',
-      fontSize: 16,
-      color: Colors.weldonBlue,
-      textAlign:'center',
-      justifyContent:'center',
-      paddingBottom:10,
-    }
-  },
 });

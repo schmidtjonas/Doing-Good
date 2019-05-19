@@ -28,8 +28,8 @@ class JobPreview extends React.Component {
                     />
                 </View>
                 <View style={styles.productRight}>
-                    <Text style={styles.productTitle}>{this.props.item.title}</Text>
-                    <Text style={styles.productAdress}>{this.props.item.description}</Text>
+                    <Text style={styles.productTitle}>{this.props.item.title.charAt(0).toUpperCase() + this.props.item.title.slice(1)}</Text>
+                    <Text style={styles.productAdress}>{this.props.item.city}</Text>
                 </View>
             </TouchableOpacity>
         );
