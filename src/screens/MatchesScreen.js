@@ -13,7 +13,7 @@ import MatchPreview from '../components/MatchPreview';
 import SplashScreen from '../components/SplashScreen';
 import Colors from '../assets/Colors';
 
-export default class NewJobScreen extends React.Component {
+export default class MatchesScreen extends React.Component {
 
   constructor(props){
     super(props);
@@ -26,7 +26,7 @@ export default class NewJobScreen extends React.Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
    this.focusListener = this.props.navigation.addListener("didFocus", () => { 
     const {userid} = this.state;
     firebase.database().ref('users/').child(userid).child('matches').orderByValue().equalTo(1).once('value')
@@ -57,6 +57,7 @@ export default class NewJobScreen extends React.Component {
         loading: false,
       })
     });
+    console.log('Sollte vorher');
   }
 
   componentWillUnmount() {
@@ -64,8 +65,12 @@ export default class NewJobScreen extends React.Component {
   }
     
     render() {
+
       if (this.state.loading){
         return <SplashScreen/>;
+      }
+      if (this.state.keys == null){
+        return false;
       }
         return (
         <View style={styles.container}>   
@@ -77,6 +82,7 @@ export default class NewJobScreen extends React.Component {
             <View style={styles.cardContainer}>
             
             <FlatList
+                
                 data={this.state.keys == null ? [] : Object.keys(this.state.keys).map(key => {
                   return this.state.requests[key];
                 })}

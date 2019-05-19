@@ -11,18 +11,14 @@ import { withNavigation } from "react-navigation";
 
 class JobPreview extends React.Component {
 
-    state = {
-        id : 0,
-        title: "Test",
-        location: "Stahnsdorferstraße 144B",
-        distance: 0,
-    }
-
     showJob(){
         
     }
     
     render(){
+        if(this.props.item == null){
+            return false;
+        }
         return (
             <TouchableOpacity onPress={() => this.showJob()} style={styles.productContainer}>
                 <View style={styles.productLeft}>

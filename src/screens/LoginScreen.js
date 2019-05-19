@@ -75,6 +75,10 @@ export default class LoginScreen extends React.Component {
               <Text style={{textAlign:'center'} }>Not registered yet? <Text onPress={()=> this.onSignUp()} style={{fontWeight:'bold'}}>Sign Up! </Text></Text>   
             </View>
 
+            <View style={styles.signUpItem}>
+              <Text onPress={()=> this.loginUser('test@test.de', '123456')} style={{fontWeight:'bold'}}>Home </Text>
+            </View>
+
           </View>
         </View>
         

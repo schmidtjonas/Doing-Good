@@ -1,4 +1,5 @@
 .env
+android/local.properties
 # OSX
 #
 .DS_Store

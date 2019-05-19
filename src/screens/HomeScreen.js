@@ -100,9 +100,11 @@ export default class App extends Component {
                       <Text>
                       {data[key]['description']}
                       </Text>
-                      <Text>
-                      {users[data[key]['userid']]['name']} needs help at {data[key]['date']}
-                      </Text>
+                      <View style={styles.bottomItemCard}>
+                        <Text style={{textAlign:'center', justifyContent:'center', alignContent: 'center'}}>
+                        {users[data[key]['userid']]['name']} needs help at {data[key]['date']}
+                        </Text>
+                      </View>
                     </View>
             </Card>;
           })}
@@ -167,6 +169,8 @@ const styles = StyleSheet.create({
   },
   bottomCard : {
     padding: 10,
+    height:270,
+    width:'100%',
   },
   card1: {
     backgroundColor: '#FE474C',
@@ -226,5 +230,10 @@ const styles = StyleSheet.create({
     borderRadius:75,
     borderWidth:3,
     borderColor: Colors.sunsetOrange,
+  },
+  bottomItemCard: {
+    position: 'absolute',
+    bottom: 30,
+    paddingLeft: 10,
   }
 });

@@ -57,9 +57,7 @@ export default createBottomTabNavigator(
   Matches: MatchesStack,
   AddQuest: NewJobStack,
   Profile: ProfileStack,
-  
 },{
-  swipeEnabled: true,
   tabBarOptions: {
     labelStyle:{
       fontFamily: 'Roboto',
