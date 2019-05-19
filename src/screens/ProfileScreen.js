@@ -100,7 +100,7 @@ export default class ProfileScreen extends React.Component {
   };
 
   renderJobPreview({ item }){
-      return <JobPreview item = {item}/>;
+      return <JobPreview item = {item} />;
   }
   
   returnKey(item){
