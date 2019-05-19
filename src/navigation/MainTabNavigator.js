@@ -36,6 +36,9 @@ const ProfileStack = createStackNavigator({
 const NewJobStack = createStackNavigator({
   Create: {
       screen : NewJobScreen,
+      navigationOptions: {
+        header: null,
+    },
   },
 });
 
@@ -52,7 +55,7 @@ export default createBottomTabNavigator(
   {
   Home: HomeStack,
   Matches: MatchesStack,
-  AddJob: NewJobStack,
+  AddQuest: NewJobStack,
   Profile: ProfileStack,
   
 },{
