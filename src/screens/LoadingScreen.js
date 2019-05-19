@@ -3,7 +3,7 @@ import { StyleSheet, View, Button, Text} from 'react-native';
 import AnimatedLoader from 'react-native-animated-loader';
 import LottieView from 'lottie-react-native';
 
-export default class Loader extends React.Component{
+export default class LoadingScreen extends React.Component{
     constructor(props){
         super(props);
         this.state = { visible : false}

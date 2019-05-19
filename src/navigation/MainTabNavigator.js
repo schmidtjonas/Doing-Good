@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform , Icon} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -63,7 +63,12 @@ export default createBottomTabNavigator(
   Profile: ProfileStack,
   
 },{
+  swipeEnabled: true,
   tabBarOptions: {
-    activeTintColor: Colors.weldonBlue,
+    labelStyle:{
+      fontFamily: 'Roboto',
+      fontSize: 18,
+      color: Colors.weldonBlue,
+    }
   },
 });
