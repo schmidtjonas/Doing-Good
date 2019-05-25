@@ -65,7 +65,6 @@ export default class MatchesScreen extends React.Component {
   }
     
     render() {
-      console.log("test");
 
       if (this.state.loading){
         return <SplashScreen/>;
